@@ -1,0 +1,88 @@
+/* ============================================
+   SLIDE 4: E-COMMERCE
+   ============================================ */
+.ecommerce-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ecommerce-content h2 {
+    margin-bottom: 2rem;
+    color: var(--color-gold);
+}
+
+.ecommerce-grid-top {
+    display: grid;
+    grid-template-columns: 1.2fr 1.8fr;
+    /* Mais espaço para os cards menores */
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    /* Espaço para a seção de soft skills */
+}
+
+.solo-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cards-triplo-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.soft-skills-container {
+    margin-top: auto;
+    /* Empurra para baixo */
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.soft-skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.soft-skill-card {
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: var(--transition);
+}
+
+.soft-skill-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+}
+
+.ss-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ss-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+.ss-item i {
+    color: var(--color-emerald);
+    margin-top: 3px;
+    font-size: 0.8rem;
+}

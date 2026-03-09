@@ -1,0 +1,74 @@
+/* ============================================
+   SLIDE 5: RPA-TMS
+   ============================================ */
+.rpa-left-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.5rem;
+}
+
+.rpa-right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.rpa-visual-container {
+    margin: 1rem 0;
+    width: 100%;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.rpa-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform 0.4s ease;
+}
+
+.rpa-img:hover {
+    transform: scale(1.05);
+}
+
+.problem-desc-Highlight {
+    color: var(--color-gold);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.benefits-grid {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(78, 205, 196, 0.2);
+    transition: var(--transition);
+}
+
+.benefit-item:hover {
+    background: rgba(78, 205, 196, 0.1);
+    transform: translateX(5px);
+}
+
+/* Reusing existing classes but ensuring they work in new context */
+.impact-box {
+    margin-bottom: 0;
+    padding: 1.5rem;
+}

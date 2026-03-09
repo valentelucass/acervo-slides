@@ -1,0 +1,243 @@
+/* ============================================
+   SLIDE 2: SOBRE MIM
+   ============================================ */
+.sobre-mim-title {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.sobre-mim-layout {
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.sobre-mim-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: flex-start;
+}
+
+.sobre-mim-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Card Principal Sobre Mim */
+.card-about-main {
+    padding: 1.75rem;
+}
+
+.about-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 107, 107, 0.15);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    flex-shrink: 0;
+}
+
+.about-main-icon {
+    font-size: 1.75rem;
+    color: var(--color-gold);
+}
+
+.about-intro {
+    flex: 1;
+}
+
+.about-intro h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.4rem;
+}
+
+.about-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.about-text {
+    color: var(--color-text);
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Card Abordagem */
+.card-approach {
+    padding: 1.5rem;
+}
+
+.approach-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.approach-icon {
+    font-size: 1.5rem;
+}
+
+.approach-features {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(0, 217, 165, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.approach-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-text);
+    font-size: 0.9rem;
+}
+
+.approach-feature i {
+    color: var(--color-emerald);
+    font-size: 1rem;
+}
+
+/* Cards de Informação */
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    height: 100%;
+}
+
+.card-info {
+    padding: 1rem;
+    transition: var(--transition);
+}
+
+.card-info:hover {
+    transform: translateX(5px);
+    border-color: rgba(255, 107, 107, 0.3);
+}
+
+.info-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.info-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 107, 107, 0.15);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.info-icon-wrapper i {
+    font-size: 1.1rem;
+    color: var(--color-gold);
+}
+
+.info-card-header h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.info-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.info-text-main {
+    color: var(--color-text);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.info-text-secondary {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Card Contato */
+.card-contact .info-card-content {
+    gap: 0.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+}
+
+.contact-icon {
+    color: var(--color-gold);
+    font-size: 0.9rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.contact-item .info-text-main,
+.contact-item .info-text-secondary {
+    flex: 1;
+    word-break: break-word;
+    font-size: 0.9rem;
+}
+
+/* Card Skills Preview */
+.card-skills-preview {
+    margin-top: 0.5rem;
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.skill-tag {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 107, 107, 0.15);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: 20px;
+    color: var(--color-gold);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.skill-tag:hover {
+    background: rgba(255, 107, 107, 0.25);
+    transform: translateY(-2px);
+}

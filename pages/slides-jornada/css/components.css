@@ -1,0 +1,229 @@
+/* ============================================
+   COMPONENTES E UI
+   ============================================ */
+
+/* CARD VIDRO PRINCIPAL */
+.cartao-vidro {
+    width: var(--card-width);
+    max-width: var(--card-max-width);
+    height: var(--card-height);
+    background: rgba(26, 31, 58, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: var(--card-padding);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.cartao-vidro>* {
+    min-height: 0;
+    flex-shrink: 0;
+}
+
+/* CARDS COMPACTOS */
+.card-compact {
+    background: rgba(26, 29, 46, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+    backdrop-filter: blur(12px);
+    flex-shrink: 0;
+}
+
+.card-compact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.card-gold {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.card-royal {
+    background: rgba(108, 92, 231, 0.1);
+    border-color: rgba(108, 92, 231, 0.3);
+}
+
+.card-emerald {
+    background: rgba(0, 217, 165, 0.1);
+    border-color: rgba(0, 217, 165, 0.3);
+}
+
+/* CARD NOTION */
+.card-notion {
+    padding: 1.75rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.card-notion .card-text-emerald {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.card-notion .card-text-small {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 217, 165, 0.2);
+}
+
+/* TEXT UTILS SHARED */
+.card-text-small {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin-top: 0.75rem;
+    line-height: 1.4;
+}
+
+.card-text-small-mt {
+    margin-top: 1rem;
+}
+
+/* ÍCONES */
+.icon-gold-inline,
+.icon-royal-inline,
+.icon-emerald-inline {
+    margin-right: 0.5rem;
+}
+
+.icon-gold-inline {
+    color: var(--color-gold);
+}
+
+.icon-royal-inline {
+    color: var(--color-royal);
+}
+
+.icon-emerald-inline {
+    color: var(--color-emerald);
+}
+
+i[class*="fas"],
+i[class*="fab"] {
+    font-size: 1.2em;
+}
+
+/* TIPOGRAFIA ESPECIAL */
+.h3-gold {
+    color: var(--color-gold);
+}
+
+.h3-royal {
+    color: var(--color-royal);
+}
+
+.h3-emerald {
+    color: var(--color-emerald);
+}
+
+.h3-emerald-inline {
+    color: var(--color-emerald);
+    display: inline;
+}
+
+.h4-gold {
+    color: var(--color-gold);
+}
+
+.h4-royal {
+    color: var(--color-royal);
+}
+
+.h4-emerald {
+    color: var(--color-emerald);
+}
+
+.card-text-emerald {
+    color: var(--color-text);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.tech-text {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* NAVEGAÇÃO */
+.btn-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-light);
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-nav:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.btn-nav.prev {
+    left: 2rem;
+}
+
+.btn-nav.next {
+    right: 2rem;
+}
+
+.barra-progresso {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: var(--gradient-gold);
+    transition: width 0.6s ease;
+    z-index: 100;
+    box-shadow: 0 -2px 10px rgba(255, 215, 0, 0.5);
+}
+
+/* BOTÕES GERAIS */
+.btn-restart {
+    padding: 1rem 2.5rem;
+    background: var(--gradient-gold);
+    border: none;
+    border-radius: 50px;
+    color: var(--color-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+}
+
+.btn-restart:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+}
+
+.btn-restart:active {
+    transform: translateY(-1px);
+}

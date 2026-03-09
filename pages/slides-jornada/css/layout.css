@@ -1,0 +1,148 @@
+/* ============================================
+   LAYOUT E ESTRUTURA
+   ============================================ */
+
+/* CONTAINER PRINCIPAL */
+.container-slides {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    padding: 2rem;
+}
+
+.trilha-slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0.3;
+    transition: opacity 0.6s ease;
+}
+
+.slide.ativo {
+    opacity: 1;
+}
+
+/* ORBS DE FUNDO */
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--color-gold);
+    top: -200px;
+    left: -200px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--color-royal);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 5s;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    background: var(--color-emerald);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 10s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+}
+
+/* GRIDS E LAYOUTS */
+.layout-duplo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    height: auto;
+    flex: 1;
+    align-content: center;
+    min-height: 0;
+}
+
+.layout-triplo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    flex-shrink: 0;
+}
+
+.layout-triplo-compact {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.flex-col-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+    min-height: 0;
+}
+
+/* ESPAÇAMENTOS */
+.card-mb {
+    margin-bottom: 1rem;
+}
+
+.card-mb-small {
+    margin-bottom: 0.75rem;
+}
+
+.card-mb-large {
+    margin-bottom: 1.75rem;
+}
+
+.card-mt {
+    margin-top: 1rem;
+}
+
+.h3-mt {
+    margin-top: 1.5rem;
+}
+
+.text-margin-0 {
+    margin: 0;
+}
+
+.text-margin-top {
+    margin-top: 0.75rem;
+}

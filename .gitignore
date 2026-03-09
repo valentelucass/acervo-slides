@@ -1,0 +1,12 @@
+dist/
+.vercel/
+node_modules/
+.ai/
+
+.vscode/
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+*.log

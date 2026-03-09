@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliacao de Estagio e Efetivacao</title>
+    <link rel="icon" href="../../public/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-shell">
+        <div class="ambient ambient-a"></div>
+        <div class="ambient ambient-b"></div>
+        <div class="ambient ambient-c"></div>
+
+        <div class="deck-stage">
+            <button class="nav-arrow prev" type="button" aria-label="Slide anterior">
+                <span aria-hidden="true">&#8249;</span>
+            </button>
+
+            <div class="deck-card">
+                <main class="deck">
+                    <section class="slide active accent-slate" data-title="Contexto">
+                        <div class="slide-grid">
+                            <div class="slide-copy">
+                                <p class="eyebrow">Slide 1</p>
+                                <h2>Contexto do estagio</h2>
+                                <ul class="bullet-list">
+                                    <li>Atuacao nos ultimos meses em automacoes, dados e desenvolvimento interno.</li>
+                                    <li>Participacao direta na estruturacao inicial da area de TI da empresa.</li>
+                                    <li>Conducao tecnica das entregas como unico desenvolvedor interno.</li>
+                                    <li>Foco em reduzir trabalho manual, organizar dados e profissionalizar a presenca digital.</li>
+                                </ul>
+                            </div>
+                            <aside class="impact-panel">
+                                <div class="metric-strip">
+                                    <div class="metric-card">
+                                        <span class="metric-value">1</span>
+                                        <span class="metric-label">desenvolvedor interno</span>
+                                    </div>
+                                    <div class="metric-card">
+                                        <span class="metric-value">6</span>
+                                        <span class="metric-label">frentes centrais no deck</span>
+                                    </div>
+                                </div>
+                                <div class="impact-card">
+                                    <span class="impact-label">Leitura do deck</span>
+                                    <p>As evidencias visuais agora ficam em slides proprios, e os valores passam a usar estimativas de mercado separadas por construcao, manutencao e economia operacional.</p>
+                                </div>
+                            </aside>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-emerald" data-title="RPA TMS Visual">
+                        <div class="showcase-shell">
+                            <div class="showcase-head">
+                                <p class="eyebrow">Slide 2</p>
+                                <h2 class="showcase-title">RPA TMS em operacao</h2>
+                                <p class="showcase-summary">Registro real da automacao executando a rotina que antes dependia de trabalho repetitivo no TMS.</p>
+                            </div>
+                            <div class="showcase-frame">
+                                <img class="showcase-image" src="images/foto1.png" alt="Automacao RPA TMS em execucao">
+                            </div>
+                            <div class="showcase-notes">
+                                <article class="showcase-note wide">
+                                    <h3>O que a imagem representa</h3>
+                                    <ul class="detail-list">
+                                        <li>Execucao automatica de cliques e navegacao no ambiente operacional do TMS.</li>
+                                        <li>Substituicao de uma rotina repetitiva e sujeita a variacao manual.</li>
+                                        <li>Exemplo pratico da automacao que gerou ganho recorrente de tempo para a operacao.</li>
+                                    </ul>
+                                </article>
+                                <article class="showcase-note">
+                                    <span class="impact-label">Mercado</span>
+                                    <p>Projeto equivalente: R$ 12-16 mil.</p>
+                                </article>
+                                <article class="showcase-note">
+                                    <span class="impact-label">Ganho</span>
+                                    <p>160 horas por mes voltaram para a equipe.</p>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-amber" data-title="Metodo das Estimativas">
+                        <div class="slide-grid">
+                            <div class="slide-copy">
+                                <p class="eyebrow">Slide 3</p>
+                                <h2 class="wide-title">Metodo das estimativas</h2>
+                                <ul class="bullet-list">
+                                    <li>Os valores mostram equivalentes de mercado 2025-2026 para contratar fornecedor externo ou consultoria.</li>
+                                    <li>Automacoes usam referencia publica de consultoria em torno de R$ 160/h.</li>
+                                    <li>Site institucional usa faixa publicada para desenvolvimento profissional e manutencao mensal.</li>
+                                    <li>CMS e ETL usam referencia de software sob medida entre R$ 120/h e R$ 180/h, com horas inferidas pelo escopo entregue.</li>
+                                </ul>
+                            </div>
+                            <aside class="impact-panel">
+                                <div class="estimate-grid">
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 160/h</span>
+                                        <span class="estimate-label">consultoria / analise de sistemas</span>
+                                    </article>
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 120-180/h</span>
+                                        <span class="estimate-label">software sob medida</span>
+                                    </article>
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 45</span>
+                                        <span class="estimate-label">Power BI Pro por usuario / mes</span>
+                                    </article>
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 200-800</span>
+                                        <span class="estimate-label">manutencao mensal de site</span>
+                                    </article>
+                                </div>
+                                <div class="impact-card">
+                                    <span class="impact-label">Fontes usadas</span>
+                                    <p>CFA, Portal Salario com base no CAGED, Huios Web, Hostinger, Aegis AI, JK Consultoria, Eden e editais publicos de 2025 para licenciamento Power BI.</p>
+                                </div>
+                                <p class="source-note">As horas de cada projeto sao inferencias conservadoras pelo escopo mostrado, nao um contrato fechado de mercado.</p>
+                            </aside>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-emerald" data-title="Automacao RPA TMS">
+                        <div class="slide-grid">
+                            <div class="slide-copy">
+                                <p class="eyebrow">Slide 4</p>
+                                <h2>Automacao RPA TMS</h2>
+                                <ul class="bullet-list">
+                                    <li>Automacao de cliques em uma rotina do TMS antes executada manualmente por cerca de 5 pessoas.</li>
+                                    <li>Cada ciclo consumia em torno de 20 minutos e a automacao recupera aproximadamente 160 horas por mes.</li>
+                                    <li>O equivalente de mercado para construir esse fluxo fica entre R$ 12 mil e R$ 16 mil.</li>
+                                    <li>Se a sustentacao fosse terceirizada, a faixa conservadora seria de R$ 600 a R$ 1.000 por mes.</li>
+                                </ul>
+                            </div>
+                            <aside class="impact-panel">
+                                <div class="estimate-grid">
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 12-16 mil</span>
+                                        <span class="estimate-label">equivalente de construcao</span>
+                                    </article>
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 600-1.000</span>
+                                        <span class="estimate-label">sustentacao externa / mes</span>
+                                    </article>
+                                    <article class="estimate-card full">
+                                        <span class="estimate-value">R$ 27 mil / ano</span>
+                                        <span class="estimate-label">economia operacional direta com 160h / mes e base salarial de logistica</span>
+                                    </article>
+                                </div>
+                                <div class="impact-card">
+                                    <span class="impact-label">Faixa do 1o ano</span>
+                                    <p>Somando construcao interna, manutencao evitada e horas operacionais devolvidas, o equivalente conservador fica entre R$ 46 mil e R$ 55 mil no primeiro ano.</p>
+                                </div>
+                                <p class="source-note">Base: CFA 2025 para hora tecnica e Portal Salario 03/2026 para assistente de logistica de transporte.</p>
+                            </aside>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-slate" data-title="SIPROQUIM Visual">
+                        <div class="showcase-shell">
+                            <div class="showcase-head">
+                                <p class="eyebrow">Slide 5</p>
+                                <h2 class="showcase-title">Processo SIPROQUIM</h2>
+                                <p class="showcase-summary">Captura do fluxo que passou a ser controlado e acompanhado automaticamente.</p>
+                            </div>
+                            <div class="showcase-frame">
+                                <img class="showcase-image" src="images/foto2.png" alt="Processo SIPROQUIM automatizado">
+                            </div>
+                            <div class="showcase-notes">
+                                <article class="showcase-note wide">
+                                    <h3>Leitura rapida da imagem</h3>
+                                    <ul class="detail-list">
+                                        <li>Representa a etapa central do processo de regularizacao automatizado.</li>
+                                        <li>Ajuda a visualizar o ganho de controle sobre um fluxo sensivel para conformidade.</li>
+                                        <li>Mostra a passagem de um processo manual e lento para uma rotina mais rastreavel.</li>
+                                    </ul>
+                                </article>
+                                <article class="showcase-note">
+                                    <span class="impact-label">Prazo</span>
+                                    <p>Menos de 1 dia no fluxo atual.</p>
+                                </article>
+                                <article class="showcase-note">
+                                    <span class="impact-label">Mercado</span>
+                                    <p>Entrega comparavel a R$ 9-13 mil.</p>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-slate" data-title="Automacao SIPROQUIM">
+                        <div class="slide-grid">
+                            <div class="slide-copy">
+                                <p class="eyebrow">Slide 6</p>
+                                <h2 class="wide-title">Automacao SIPROQUIM</h2>
+                                <ul class="bullet-list">
+                                    <li>O fluxo de regularizacao saiu de um prazo de 14 a 15 dias para processamento em menos de 1 dia.</li>
+                                    <li>A automacao assumiu envio, controle e acompanhamento de um processo antes fortemente manual.</li>
+                                    <li>O equivalente externo para construir esse fluxo fica entre R$ 9 mil e R$ 13 mil.</li>
+                                    <li>A sustentacao terceirizada ficaria entre R$ 500 e R$ 800 por mes.</li>
+                                </ul>
+                            </div>
+                            <aside class="impact-panel">
+                                <div class="estimate-grid">
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 9-13 mil</span>
+                                        <span class="estimate-label">equivalente de construcao</span>
+                                    </article>
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 500-800</span>
+                                        <span class="estimate-label">sustentacao externa / mes</span>
+                                    </article>
+                                    <article class="estimate-card full">
+                                        <span class="estimate-value">15 dias -&gt; &lt; 1 dia</span>
+                                        <span class="estimate-label">reducao de prazo com mais previsibilidade regulatoria</span>
+                                    </article>
+                                </div>
+                                <div class="impact-card">
+                                    <span class="impact-label">Faixa do 1o ano</span>
+                                    <p>O primeiro ano de entrega equivalente varia entre R$ 15 mil e R$ 23 mil, sem monetizar o risco regulatorio reduzido por falta de historico interno de multas.</p>
+                                </div>
+                                <p class="source-note">Base: CFA 2025 para hora tecnica. O beneficio regulatorio foi mantido qualitativo para evitar um numero arbitrario.</p>
+                            </aside>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-amber" data-title="Site Institucional">
+                        <div class="site-overview">
+                            <header class="site-overview-header">
+                                <div class="site-heading-block">
+                                    <p class="eyebrow">Slide 7</p>
+                                    <h2 class="site-title">Evolucao do site institucional</h2>
+                                    <p class="site-lead">A entrega saiu de um portal institucional inicial para uma base mais madura, pronta para CMS, novas secoes e manutencao mais previsivel.</p>
+                                </div>
+                                <div class="site-value-rail">
+                                    <article class="site-value-pill">
+                                        <span class="site-value-label">Primeira versao</span>
+                                        <strong>R$ 3-8 mil</strong>
+                                    </article>
+                                    <article class="site-value-pill">
+                                        <span class="site-value-label">Segunda versao</span>
+                                        <strong>R$ 8-25 mil</strong>
+                                    </article>
+                                    <article class="site-value-pill wide">
+                                        <span class="site-value-label">Faixa do 1o ano</span>
+                                        <strong>R$ 12-45 mil</strong>
+                                    </article>
+                                </div>
+                            </header>
+
+                            <div class="site-showcase-grid">
+                                <article class="site-stage-card">
+                                    <div class="site-stage-top">
+                                        <span class="site-stage-tag">Primeira versao</span>
+                                        <h3>Portal institucional inicial</h3>
+                                    </div>
+                                    <div class="site-stage-frame">
+                                        <img class="site-stage-image" src="images/foto3.png" alt="Primeira versao do site institucional da Rodogarcia">
+                                    </div>
+                                    <ul class="detail-list compact-detail-list">
+                                        <li>Estrutura inicial do portal institucional da Rodogarcia.</li>
+                                        <li>Apresentacao de empresa, servicos e presenca digital propria.</li>
+                                    </ul>
+                                </article>
+
+                                <article class="site-stage-card emphasis">
+                                    <div class="site-stage-top">
+                                        <span class="site-stage-tag">Segunda versao</span>
+                                        <h3>Evolucao em construcao</h3>
+                                    </div>
+                                    <div class="site-stage-frame">
+                                        <img class="site-stage-image" src="images/foto6.png" alt="Segunda versao do site da Rodogarcia em desenvolvimento">
+                                    </div>
+                                    <ul class="detail-list compact-detail-list">
+                                        <li>Evolucao visual, estrutural e de maturidade do projeto.</li>
+                                        <li>Base preparada para crescer junto do CMS e de novas funcoes.</li>
+                                    </ul>
+                                </article>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <section class="slide accent-emerald" data-title="CMS Visual">
+                        <div class="showcase-shell">
+                            <div class="showcase-head">
+                                <p class="eyebrow">Slide 8</p>
+                                <h2 class="showcase-title">Dashboard do CMS</h2>
+                                <p class="showcase-summary">Painel administrativo criado separadamente do portal publico para dar autonomia de gestao e abrir espaco para novas funcoes.</p>
+                            </div>
+                            <div class="showcase-frame">
+                                <img class="showcase-image" src="images/foto7.png" alt="Dashboard do CMS do site">
+                            </div>
+                            <div class="showcase-notes">
+                                <article class="showcase-note wide">
+                                    <h3>O que mudou com o CMS</h3>
+                                    <ul class="detail-list">
+                                        <li>A imagem mostra a camada administrativa criada para gestao de conteudo.</li>
+                                        <li>O sistema foi separado do site publico para permitir manutencao e evolucao com menos risco.</li>
+                                        <li>Com isso, o portal deixa de ser so institucional e passa a ter operacao propria.</li>
+                                    </ul>
+                                </article>
+                                <article class="showcase-note">
+                                    <span class="impact-label">Construcao</span>
+                                    <p>Faixa de R$ 10-22 mil.</p>
+                                </article>
+                                <article class="showcase-note">
+                                    <span class="impact-label">Manutencao</span>
+                                    <p>Faixa de R$ 500-1.100 por mes.</p>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-emerald" data-title="CMS para Marketing">
+                        <div class="slide-grid">
+                            <div class="slide-copy">
+                                <p class="eyebrow">Slide 9</p>
+                                <h2 class="wide-title">Sistema CMS para marketing</h2>
+                                <ul class="bullet-list">
+                                    <li>O site deixou de ser apenas institucional e passou a contar com uma camada administrativa separada.</li>
+                                    <li>Considerando desenvolvimento sob medida, o equivalente externo fica entre R$ 10 mil e R$ 22 mil.</li>
+                                    <li>Para manutencao e ajustes evolutivos, a faixa conservadora seria de R$ 500 a R$ 1.100 por mes.</li>
+                                    <li>Isso reduz dependencia tecnica para publicacao e prepara o projeto para novas funcionalidades.</li>
+                                </ul>
+                            </div>
+                            <aside class="impact-panel">
+                                <div class="estimate-grid">
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 10-22 mil</span>
+                                        <span class="estimate-label">equivalente de construcao</span>
+                                    </article>
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 500-1.100</span>
+                                        <span class="estimate-label">sustentacao externa / mes</span>
+                                    </article>
+                                    <article class="estimate-card full">
+                                        <span class="estimate-value">2 camadas</span>
+                                        <span class="estimate-label">site publico e sistema administrativo separados</span>
+                                    </article>
+                                </div>
+                                <div class="impact-card">
+                                    <span class="impact-label">Faixa do 1o ano</span>
+                                    <p>O valor equivalente do primeiro ano do CMS fica entre R$ 16 mil e R$ 35 mil, sem incluir futuras expansoes de modulo.</p>
+                                </div>
+                                <p class="source-note">Base: Aegis AI 01/2026 para hora de software sob medida e manutencao evolutiva.</p>
+                            </aside>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-slate" data-title="ETL Visual">
+                        <div class="showcase-shell">
+                            <div class="showcase-head">
+                                <p class="eyebrow">Slide 10</p>
+                                <h2 class="showcase-title">Sistema ETL / extracao de dados</h2>
+                                <p class="showcase-summary">Registro do codigo que estruturou a coleta, transformacao e consolidacao de dados internos.</p>
+                            </div>
+                            <div class="showcase-frame">
+                                <img class="showcase-image" src="images/foto5.png" alt="Sistema ETL e extracao de dados em codigo">
+                            </div>
+                            <div class="showcase-notes">
+                                <article class="showcase-note wide">
+                                    <h3>O que a imagem representa</h3>
+                                    <ul class="detail-list">
+                                        <li>Trecho real do sistema responsavel por consolidar e tratar informacoes de fontes distintas.</li>
+                                        <li>Materializa a camada tecnica que deixou os dados prontos para uso analitico.</li>
+                                        <li>Serve de base para dashboards, relatorios e novas automacoes internas.</li>
+                                    </ul>
+                                </article>
+                                <article class="showcase-note">
+                                    <span class="impact-label">Mercado</span>
+                                    <p>Projeto comparavel a R$ 20-40 mil.</p>
+                                </article>
+                                <article class="showcase-note">
+                                    <span class="impact-label">Base</span>
+                                    <p>ETL como fundacao de dados para BI.</p>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-slate" data-title="Infraestrutura de Dados">
+                        <div class="slide-grid">
+                            <div class="slide-copy">
+                                <p class="eyebrow">Slide 11</p>
+                                <h2 class="wide-title">Infraestrutura de dados (ETL)</h2>
+                                <ul class="bullet-list">
+                                    <li>Projeto mais complexo do periodo, desenvolvido em Java para consolidar diferentes fontes internas.</li>
+                                    <li>O equivalente de mercado para um escopo desse porte fica entre R$ 20 mil e R$ 40 mil.</li>
+                                    <li>Uma manutencao evolutiva terceirizada desse pipeline ficaria entre R$ 700 e R$ 1.800 por mes.</li>
+                                    <li>Foi a base que permitiu organizar dados, acelerar analise e sustentar dashboards futuros.</li>
+                                </ul>
+                            </div>
+                            <aside class="impact-panel">
+                                <div class="estimate-grid">
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 20-40 mil</span>
+                                        <span class="estimate-label">equivalente de construcao</span>
+                                    </article>
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 700-1.800</span>
+                                        <span class="estimate-label">sustentacao externa / mes</span>
+                                    </article>
+                                    <article class="estimate-card full">
+                                        <span class="estimate-value">R$ 70 / h</span>
+                                        <span class="estimate-label">media salarial nacional de engenheiro de dados como referencia complementar de senioridade</span>
+                                    </article>
+                                </div>
+                                <div class="impact-card">
+                                    <span class="impact-label">Faixa do 1o ano</span>
+                                    <p>Considerando construcao e manutencao anual, o ETL representa entre R$ 28 mil e R$ 62 mil em entrega equivalente de mercado no primeiro ano.</p>
+                                </div>
+                                <p class="source-note">Base: Aegis AI 01/2026 para software sob medida e Portal Salario 03/2026 para engenheiro de dados.</p>
+                            </aside>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-amber" data-title="Power BI Visual">
+                        <div class="showcase-shell">
+                            <div class="showcase-head">
+                                <p class="eyebrow">Slide 12</p>
+                                <h2 class="showcase-title">Dashboard Power BI</h2>
+                                <p class="showcase-summary">Painel conectado a base tratada para acompanhar indicadores e apoiar leitura operacional.</p>
+                            </div>
+                            <div class="showcase-frame">
+                                <img class="showcase-image" src="images/foto4.png" alt="Dashboard Power BI">
+                            </div>
+                            <div class="showcase-notes">
+                                <article class="showcase-note wide">
+                                    <h3>O que a imagem mostra</h3>
+                                    <ul class="detail-list">
+                                        <li>Visualizacao consolidada de indicadores em um painel unico.</li>
+                                        <li>Transformacao da base do ETL em leitura pratica para decisao.</li>
+                                        <li>Estrutura criada para identificar gargalos e acompanhar a operacao com mais velocidade.</li>
+                                    </ul>
+                                </article>
+                                <article class="showcase-note">
+                                    <span class="impact-label">Construcao</span>
+                                    <p>Faixa de R$ 3-5 mil.</p>
+                                </article>
+                                <article class="showcase-note">
+                                    <span class="impact-label">Licencas</span>
+                                    <p>5 usuarios Pro: R$ 225 por mes.</p>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-amber" data-title="Business Intelligence">
+                        <div class="slide-grid">
+                            <div class="slide-copy">
+                                <p class="eyebrow">Slide 13</p>
+                                <h2 class="wide-title">Business Intelligence (Power BI)</h2>
+                                <ul class="bullet-list">
+                                    <li>Os dashboards passaram a usar a base estruturada pelo ETL para leitura operacional mais rapida.</li>
+                                    <li>Um projeto de dashboard corporativo desse porte equivale a aproximadamente R$ 3 mil a R$ 5 mil em desenvolvimento.</li>
+                                    <li>Suporte e ajustes recorrentes por fornecedor externo ficariam entre R$ 500 e R$ 1.000 por mes.</li>
+                                    <li>Como referencia publica de plataforma, 5 licencas Power BI Pro representam cerca de R$ 225 por mes.</li>
+                                </ul>
+                            </div>
+                            <aside class="impact-panel">
+                                <div class="estimate-grid">
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 3-5 mil</span>
+                                        <span class="estimate-label">equivalente de construcao</span>
+                                    </article>
+                                    <article class="estimate-card">
+                                        <span class="estimate-value">R$ 500-1.000</span>
+                                        <span class="estimate-label">sustentacao externa / mes</span>
+                                    </article>
+                                    <article class="estimate-card full">
+                                        <span class="estimate-value">R$ 225 / mes</span>
+                                        <span class="estimate-label">referencia publica para 5 licencas Power BI Pro</span>
+                                    </article>
+                                </div>
+                                <div class="impact-card">
+                                    <span class="impact-label">Faixa do 1o ano</span>
+                                    <p>Sem contar licencas, o equivalente da entrega e manutencao do primeiro ano fica entre R$ 9 mil e R$ 17 mil. Com 5 licencas Pro, a operacao adiciona cerca de R$ 3 mil por ano.</p>
+                                </div>
+                                <p class="source-note">Base: JK Consultoria 2026, Eden 2026 e editais publicos de 2025 para referencia de licenca Power BI Pro.</p>
+                            </aside>
+                        </div>
+                    </section>
+
+                    <section class="slide accent-emerald" data-title="Evolucao da TI">
+                        <div class="slide-grid">
+                            <div class="slide-copy">
+                                <p class="eyebrow">Slide 14</p>
+                                <h2 class="wide-title">Valor entregue e proximo passo</h2>
+                                <ul class="bullet-list">
+                                    <li>Somando as frentes principais, a equivalencia conservadora de mercado no primeiro ano fica entre R$ 127 mil e R$ 237 mil.</li>
+                                    <li>Essa faixa nao inclui multas evitadas, expansoes futuras, hospedagem adicional ou novas automacoes derivadas da base criada.</li>
+                                    <li>O estagio deixou legado em automacao, dados, BI e presenca digital com ativos internos reutilizaveis.</li>
+                                    <li>O proximo passo e consolidar documentacao, priorizar novas automacoes e continuar evoluindo dados e sistemas como estrutura permanente.</li>
+                                </ul>
+                            </div>
+                            <aside class="impact-panel">
+                                <div class="metric-strip">
+                                    <div class="metric-card">
+                                        <span class="metric-value">R$ 127-237 mil</span>
+                                        <span class="metric-label">equivalente conservador no 1o ano</span>
+                                    </div>
+                                    <div class="metric-card">
+                                        <span class="metric-value">6</span>
+                                        <span class="metric-label">frentes com valor estimado</span>
+                                    </div>
+                                </div>
+                                <div class="impact-card">
+                                    <span class="impact-label">Leitura executiva</span>
+                                    <p>Mais do que tarefas isoladas, o periodo criou uma fundacao interna que reduz dependencia externa e acelera as proximas entregas de TI da empresa.</p>
+                                </div>
+                                <p class="source-note">Faixa final montada a partir das estimativas individuais dos slides anteriores, sempre em modo conservador.</p>
+                            </aside>
+                        </div>
+                    </section>
+                </main>
+
+                <footer class="card-footer">
+                    <div class="progress-shell" aria-hidden="true">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <span id="slide-indicator">01 / 14</span>
+                </footer>
+            </div>
+
+            <button class="nav-arrow next" type="button" aria-label="Proximo slide">
+                <span aria-hidden="true">&#8250;</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

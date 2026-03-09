@@ -1,0 +1,78 @@
+/* ============================================
+   RESPONSIVIDADE GERAL
+   ============================================ */
+@media (max-width: 1400px) {
+    :root {
+        --card-padding: 1.5rem;
+    }
+
+    .capa-title-main {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .layout-duplo {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .layout-triplo,
+    .layout-triplo-compact {
+        grid-template-columns: 1fr;
+    }
+
+    .capa-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .info-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .contacts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --card-padding: 1rem;
+        --card-height: 90vh;
+    }
+
+    .capa-title-main {
+        font-size: 2rem;
+    }
+
+    .capa-main-icon {
+        font-size: 4rem;
+    }
+
+    .btn-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .btn-nav.prev {
+        left: 1rem;
+    }
+
+    .btn-nav.next {
+        right: 1rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+}

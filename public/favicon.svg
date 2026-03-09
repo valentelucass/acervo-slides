@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Acervo de Slides">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#61d6c2"/>
+      <stop offset="100%" stop-color="#ff9f6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#07111f"/>
+  <rect x="11" y="12" width="42" height="40" rx="12" fill="url(#bg)"/>
+  <rect x="18" y="22" width="28" height="4" rx="2" fill="#07111f"/>
+  <rect x="18" y="31" width="22" height="4" rx="2" fill="#07111f" opacity="0.9"/>
+  <rect x="18" y="40" width="16" height="4" rx="2" fill="#07111f" opacity="0.82"/>
+  <circle cx="47" cy="46" r="5" fill="#07111f"/>
+</svg>

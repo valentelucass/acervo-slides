@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Slides</title>
+    <meta name="description" content="Portal simples para acessar as apresentacoes do repositorio.">
+    <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/portal.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <p class="eyebrow">Portal central</p>
+            <h1>Acervo de slides</h1>
+            <p class="hero-copy">
+                Um indice unico para abrir cada apresentacao. Novas pastas dentro de <strong>pages/</strong>
+                entram no catalogo quando voce roda o gerador ou deixa o watcher observando o repositorio.
+            </p>
+
+            <div class="hero-stats">
+                <article class="stat-card">
+                    <span class="stat-value" id="deck-count">0</span>
+                    <span class="stat-label">apresentacoes</span>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-value" id="slide-count">0</span>
+                    <span class="stat-label">slides mapeados</span>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-value stat-date" id="last-update">--</span>
+                    <span class="stat-label">ultima atualizacao</span>
+                </article>
+            </div>
+        </header>
+
+        <section class="toolbar" aria-label="Controles do portal">
+            <label class="search-field" for="search-input">
+                <span>Buscar apresentacao</span>
+                <input
+                    id="search-input"
+                    type="search"
+                    placeholder="Titulo, pasta ou resumo"
+                    autocomplete="off">
+            </label>
+
+            <aside class="command-card">
+                <p class="command-title">Fluxo automatico</p>
+                <code>.\scripts\start-portal.cmd</code>
+                <p class="command-copy">
+                    Toda pasta dentro de <strong>pages/</strong> com prefixo <strong>slides-</strong>
+                    ganha scaffold automatico e entra no portal principal sem edicao manual.
+                </p>
+            </aside>
+        </section>
+
+        <main>
+            <section class="deck-grid" id="deck-grid" aria-live="polite"></section>
+        </main>
+    </div>
+
+    <script src="js/slides-manifest.js"></script>
+    <script src="js/portal.js"></script>
+</body>
+</html>
