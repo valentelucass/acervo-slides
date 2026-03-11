@@ -6,7 +6,7 @@ window.SLIDES_MANIFEST = [
         "title":  "Minha Jornada",
         "summary":  "Transformando Linhas de Código em Resultados Reais",
         "slideCount":  9,
-        "updatedAt":  "2026-03-09T15:53:18.3850238-03:00",
+        "updatedAt":  "2026-03-09T16:23:44.6904373-03:00",
         "generated":  false
     },
     {
@@ -14,8 +14,8 @@ window.SLIDES_MANIFEST = [
         "href":  "./pages/slides-efetivacao/",
         "title":  "Avaliacao de Estagio e Efetivacao",
         "summary":  "Contexto do estagio",
-        "slideCount":  8,
-        "updatedAt":  "2026-03-09T15:43:45.9892917-03:00",
+        "slideCount":  13,
+        "updatedAt":  "2026-03-11T15:20:40.0870603-03:00",
         "generated":  false
     },
     {
@@ -24,7 +24,7 @@ window.SLIDES_MANIFEST = [
         "title":  "Apresentação Smartwatches",
         "summary":  "Smartwatches E-Commerce",
         "slideCount":  7,
-        "updatedAt":  "2026-03-09T16:00:11.7310739-03:00",
+        "updatedAt":  "2026-03-09T16:13:17.9765314-03:00",
         "generated":  false
     }
 ];
