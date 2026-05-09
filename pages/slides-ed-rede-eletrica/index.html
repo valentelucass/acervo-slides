@@ -90,24 +90,26 @@
                         <div class="terminal-body">
 <pre><code><span class="kw">public class</span> <span class="type">Main</span> {
     <span class="kw">public static void</span> <span class="fn">main</span>(<span class="type">String</span>[] args) {
-        <span class="type">Grafo</span>&lt;<span class="type">String</span>&gt; rede = <span class="kw">new</span> <span class="type">Grafo</span>&lt;<span class="type">String</span>&gt;();
+        <span class="type">Grafo</span>&lt;<span class="type">String</span>&gt; redeEletrica = <span class="kw">new</span> <span class="type">Grafo</span>&lt;<span class="type">String</span>&gt;();
 
-        <span class="comment">// 1. Definindo os pontos (Vértices)</span>
-        rede.<span class="fn">adicionarVertice</span>(<span class="str">"Usina Central"</span>);
-        rede.<span class="fn">adicionarVertice</span>(<span class="str">"Subestacao Norte"</span>);
-        rede.<span class="fn">adicionarVertice</span>(<span class="str">"Subestacao Sul"</span>);
-        rede.<span class="fn">adicionarVertice</span>(<span class="str">"Poste Rua A"</span>);
-        rede.<span class="fn">adicionarVertice</span>(<span class="str">"Poste Rua B"</span>);
+        redeEletrica.<span class="fn">adicionarVertice</span>(<span class="str">"Usina Central"</span>); 
+        redeEletrica.<span class="fn">adicionarVertice</span>(<span class="str">"Subestacao Norte"</span>);
+        redeEletrica.<span class="fn">adicionarVertice</span>(<span class="str">"Subestacao Sul"</span>);
+        redeEletrica.<span class="fn">adicionarVertice</span>(<span class="str">"Poste Rua A"</span>);
+        redeEletrica.<span class="fn">adicionarVertice</span>(<span class="str">"Poste Rua B"</span>);
 
-        <span class="comment">// 2. Lançando os cabos (Arestas com distância)</span>
-        rede.<span class="fn">adicionarAresta</span>(<span class="num">10.5</span>, <span class="str">"Usina Central"</span>, <span class="str">"Subestacao Norte"</span>);
-        rede.<span class="fn">adicionarAresta</span>(<span class="num">15.0</span>, <span class="str">"Usina Central"</span>, <span class="str">"Subestacao Sul"</span>);
-        
-        rede.<span class="fn">adicionarAresta</span>(<span class="num">2.0</span>, <span class="str">"Subestacao Norte"</span>, <span class="str">"Poste Rua A"</span>);
-        rede.<span class="fn">adicionarAresta</span>(<span class="num">3.5</span>, <span class="str">"Subestacao Sul"</span>, <span class="str">"Poste Rua B"</span>);
+        redeEletrica.<span class="fn">adicionarAresta</span>(<span class="num">10.5</span>, <span class="str">"Usina Central"</span>, <span class="str">"Subestacao Norte"</span>);
+        redeEletrica.<span class="fn">adicionarAresta</span>(<span class="num">15.0</span>, <span class="str">"Usina Central"</span>, <span class="str">"Subestacao Sul"</span>);
 
-        <span class="type">System</span>.out.<span class="fn">println</span>(rede.<span class="fn">toString</span>());
-        rede.<span class="fn">BuscaEmLargura</span>();
+        redeEletrica.<span class="fn">adicionarAresta</span>(<span class="num">2.0</span>, <span class="str">"Subestacao Norte"</span>, <span class="str">"Poste Rua A"</span>);
+        redeEletrica.<span class="fn">adicionarAresta</span>(<span class="num">3.5</span>, <span class="str">"Subestacao Sul"</span>, <span class="str">"Poste Rua B"</span>);
+
+        <span class="type">System</span>.out.<span class="fn">println</span>(redeEletrica.<span class="fn">toString</span>());
+
+        <span class="type">System</span>.out.<span class="fn">println</span>(<span class="str">"========================================="</span>);
+        <span class="type">System</span>.out.<span class="fn">println</span>(<span class="str">"⚡ LIGANDO A ENERGIA (BUSCA EM LARGURA) ⚡"</span>);
+        <span class="type">System</span>.out.<span class="fn">println</span>(<span class="str">"========================================="</span>);
+        redeEletrica.<span class="fn">BuscaEmLargura</span>();
     }
 }</code></pre>
                         </div>
@@ -198,7 +200,7 @@
 
             <!-- Slide 6: Busca em Largura (BFS) -->
             <div class="slide">
-                <div class="cartao-vidro layout-duplo" style="grid-template-columns: 1fr 1fr;">
+                <div class="cartao-vidro layout-duplo" style="grid-template-columns: 1.4fr 0.6fr;">
                     <div class="terminal-window">
                         <div class="terminal-header">
                             <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
@@ -206,11 +208,15 @@
                         </div>
                         <div class="terminal-body">
 <pre><code><span class="kw">public void</span> <span class="fn">BuscaEmLargura</span>() {
-    <span class="type">ArrayList</span>&lt;<span class="type">Vertice</span>&lt;TIPO&gt;&gt; marcados = <span class="kw">new</span> <span class="type">ArrayList</span>&lt;&gt;();
-    <span class="type">ArrayList</span>&lt;<span class="type">Vertice</span>&lt;TIPO&gt;&gt; fila = <span class="kw">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+    <span class="type">ArrayList</span>&lt;<span class="type">Vertice</span>&lt;TIPO&gt;&gt; marcados = <span class="kw">new</span> <span class="type">ArrayList</span>&lt;<span class="type">Vertice</span>&lt;TIPO&gt;&gt;();
+    <span class="type">ArrayList</span>&lt;<span class="type">Vertice</span>&lt;TIPO&gt;&gt; fila = <span class="kw">new</span> <span class="type">ArrayList</span>&lt;<span class="type">Vertice</span>&lt;TIPO&gt;&gt;();
 
     <span class="type">Vertice</span>&lt;TIPO&gt; atual = <span class="kw">this</span>.vertices.<span class="fn">get</span>(<span class="num">0</span>);
+
     marcados.<span class="fn">add</span>(atual);
+
+    <span class="type">System</span>.out.<span class="fn">println</span>(<span class="str">"[INICIO] Ponto de partida: [ "</span> + atual.<span class="fn">getDado</span>() + <span class="str">" ]"</span>);
+
     fila.<span class="fn">add</span>(atual);
 
     <span class="kw">while</span> (fila.<span class="fn">size</span>() &gt; <span class="num">0</span>) {
@@ -221,6 +227,9 @@
 
             <span class="kw">if</span> (!marcados.<span class="fn">contains</span>(proximo)) {
                 marcados.<span class="fn">add</span>(proximo);
+
+                <span class="type">System</span>.out.<span class="fn">println</span>(<span class="str">"   ---&gt; Energia fluiu para: [ "</span> + proximo.<span class="fn">getDado</span>() + <span class="str">" ]"</span>);
+
                 fila.<span class="fn">add</span>(proximo);
             }
         }

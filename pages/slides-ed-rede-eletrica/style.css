@@ -167,7 +167,7 @@ strong { color: #fff; }
 
 .terminal-body {
     padding: 20px;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     font-family: var(--font-mono);
     font-size: 0.85rem;
