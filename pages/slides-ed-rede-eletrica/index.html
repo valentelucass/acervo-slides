@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação: Rede Elétrica com Grafos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;700&family=Sora:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <div class="container-slides">
+        <div class="trilha-slides">
+
+            <!-- Slide 1: Capa -->
+            <div class="slide ativo">
+                <div class="cartao-vidro" style="align-items: center; justify-content: center; text-align: center;">
+                    <div class="badge-neon">Projeto de Estrutura de Dados</div>
+                    <h1 style="font-size: 4rem; max-width: 900px; margin: 0 auto 20px auto;">Simulação de Rede Elétrica<br>com Grafos em Java</h1>
+                    <p style="font-size: 1.4rem; color: var(--text-muted);">Mapeamento de Distâncias e Busca em Largura (BFS)</p>
+                    
+                    <div style="margin-top: 50px; display: flex; gap: 30px; font-family: var(--font-mono); color: var(--accent-orange); font-size: 0.9rem;">
+                        <span>&gt; _IMPLEMENTAÇÃO_JAVA</span>
+                        <span>&gt; _EXECUÇÃO_MAIN</span>
+                    </div>
+
+                    <div style="margin-top: 40px; font-size: 1rem; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                        <strong style="color: #fff;">Equipe:</strong> Lucas Mateus, Pedro Gabriel, Ramon e Miguel Conceição
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Estrutura do Grafo -->
+            <div class="slide">
+                <div class="cartao-vidro layout-duplo">
+                    <div>
+                        <h2>A Estrutura</h2>
+                        <p>Foi desenvolvido um <strong>Grafo Direcionado e Ponderado</strong> genérico, adaptado para modelar uma rede de distribuição de energia.</p>
+                        
+                        <div class="grid-cards">
+                            <div class="info-card">
+                                <h3>Vertice&lt;TIPO&gt;</h3>
+                                <p>Representa os pontos da rede: Usinas, Subestações e Postes. Armazena listas de arestas de entrada e saída.</p>
+                            </div>
+                            <div class="info-card">
+                                <h3>Aresta&lt;TIPO&gt;</h3>
+                                <p>Representa os cabos conectando os pontos. Possui um <strong>peso (Double)</strong> que define a distância em km.</p>
+                            </div>
+                            <div class="info-card" style="grid-column: 1 / -1;">
+                                <h3>Grafo&lt;TIPO&gt;</h3>
+                                <p>Gerencia a coleção de vértices e arestas. Controla conexões, mapeamento <code>toString()</code> e o algoritmo de <code>BuscaEmLargura()</code>.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                            <span class="terminal-title">Vertice.java</span>
+                        </div>
+                        <div class="terminal-body">
+<pre><code><span class="kw">public class</span> <span class="type">Vertice</span>&lt;TIPO&gt; {
+    <span class="kw">private</span> <span class="type">TIPO</span> dado;
+    <span class="kw">private</span> <span class="type">ArrayList</span>&lt;<span class="type">Aresta</span>&lt;TIPO&gt;&gt; arestasEntrada;
+    <span class="kw">private</span> <span class="type">ArrayList</span>&lt;<span class="type">Aresta</span>&lt;TIPO&gt;&gt; arestasSaida;
+
+    <span class="kw">public</span> <span class="fn">Vertice</span>(<span class="type">TIPO</span> dado) {
+        <span class="kw">this</span>.dado = dado;
+        <span class="kw">this</span>.arestasEntrada = <span class="kw">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+        <span class="kw">this</span>.arestasSaida = <span class="kw">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+    }
+    <span class="comment">// ... getters e setters</span>
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Montando a Rede no Main -->
+            <div class="slide">
+                <div class="cartao-vidro layout-duplo" style="grid-template-columns: 1.2fr 0.8fr;">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                            <span class="terminal-title">Main.java</span>
+                        </div>
+                        <div class="terminal-body">
+<pre><code><span class="kw">public class</span> <span class="type">Main</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="type">String</span>[] args) {
+        <span class="type">Grafo</span>&lt;<span class="type">String</span>&gt; rede = <span class="kw">new</span> <span class="type">Grafo</span>&lt;<span class="type">String</span>&gt;();
+
+        <span class="comment">// 1. Definindo os pontos (Vértices)</span>
+        rede.<span class="fn">adicionarVertice</span>(<span class="str">"Usina Central"</span>);
+        rede.<span class="fn">adicionarVertice</span>(<span class="str">"Subestacao Norte"</span>);
+        rede.<span class="fn">adicionarVertice</span>(<span class="str">"Subestacao Sul"</span>);
+        rede.<span class="fn">adicionarVertice</span>(<span class="str">"Poste Rua A"</span>);
+        rede.<span class="fn">adicionarVertice</span>(<span class="str">"Poste Rua B"</span>);
+
+        <span class="comment">// 2. Lançando os cabos (Arestas com distância)</span>
+        rede.<span class="fn">adicionarAresta</span>(<span class="num">10.5</span>, <span class="str">"Usina Central"</span>, <span class="str">"Subestacao Norte"</span>);
+        rede.<span class="fn">adicionarAresta</span>(<span class="num">15.0</span>, <span class="str">"Usina Central"</span>, <span class="str">"Subestacao Sul"</span>);
+        
+        rede.<span class="fn">adicionarAresta</span>(<span class="num">2.0</span>, <span class="str">"Subestacao Norte"</span>, <span class="str">"Poste Rua A"</span>);
+        rede.<span class="fn">adicionarAresta</span>(<span class="num">3.5</span>, <span class="str">"Subestacao Sul"</span>, <span class="str">"Poste Rua B"</span>);
+
+        <span class="type">System</span>.out.<span class="fn">println</span>(rede.<span class="fn">toString</span>());
+        rede.<span class="fn">BuscaEmLargura</span>();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Método Main</h2>
+                        <p>O método principal atua como o engenheiro da rede.</p>
+                        <p>Ele instancia um Grafo do tipo <code>String</code>, cria 5 pontos distintos de distribuição e os conecta usando 4 arestas (cabos), onde o <strong>peso representa a distância em km</strong> entre os pontos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Grafo Visual -->
+            <div class="slide">
+                <div class="cartao-vidro">
+                    <h2>Representação Visual da Rede</h2>
+                    <p style="margin-bottom: 20px;">O grafo direcionado montado pela classe Main cria o seguinte fluxo de distribuição de energia:</p>
+                    
+                    <div class="grafo-wrapper">
+                        <!-- Vértices -->
+                        <div class="grafo-node usina" style="top: 40px; left: calc(50% - 70px);">Usina Central</div>
+                        <div class="grafo-node" style="top: 160px; left: calc(25% - 85px);">Subestacao Norte</div>
+                        <div class="grafo-node" style="top: 160px; left: calc(75% - 75px);">Subestacao Sul</div>
+                        <div class="grafo-node" style="top: 280px; left: calc(25% - 60px);">Poste Rua A</div>
+                        <div class="grafo-node" style="top: 280px; left: calc(75% - 60px);">Poste Rua B</div>
+
+                        <!-- Arestas CSS Tricks -->
+                        <!-- Usina -> Norte: aprox x:-25%, y:120px -->
+                        <div class="grafo-edge" style="width: 250px; top: 60px; left: 50%; transform: rotate(152deg);">
+                            <div class="edge-label" style="transform: rotate(-152deg) translateY(-20px);">10.5 km</div>
+                        </div>
+                        <!-- Usina -> Sul: aprox x:+25%, y:120px -->
+                        <div class="grafo-edge" style="width: 250px; top: 60px; left: 50%; transform: rotate(28deg);">
+                            <div class="edge-label" style="transform: rotate(-28deg) translateY(-20px);">15.0 km</div>
+                        </div>
+                        <!-- Norte -> PosteA -->
+                        <div class="grafo-edge" style="width: 120px; top: 180px; left: 25%; transform: rotate(90deg);">
+                            <div class="edge-label" style="transform: rotate(-90deg) translate(25px, -20px);">2.0 km</div>
+                        </div>
+                        <!-- Sul -> PosteB -->
+                        <div class="grafo-edge" style="width: 120px; top: 180px; left: 75%; transform: rotate(90deg);">
+                            <div class="edge-label" style="transform: rotate(-90deg) translate(25px, -20px);">3.5 km</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Saída toString -->
+            <div class="slide">
+                <div class="cartao-vidro layout-duplo" style="grid-template-columns: 0.8fr 1.2fr;">
+                    <div>
+                        <h2>Mapeamento<br>da Rede</h2>
+                        <p>O método <code>toString()</code> do Grafo foi sobrescrito para percorrer a lista de vértices e exibir suas <strong>Arestas de Saída</strong>.</p>
+                        <p>Ele identifica claramente quais pontos distribuem energia para frente e quais são "finais de linha".</p>
+                    </div>
+                    <div class="terminal-window" style="max-height: 75vh;">
+                        <div class="terminal-header">
+                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                            <span class="terminal-title">Saída do Console</span>
+                        </div>
+                        <div class="terminal-body" style="color: #a5d6ff;">
+<pre><code>=========================================
+[+] MAPEAMENTO DA REDE ELETRICA (GRAFO)
+=========================================
+
+[O] Ponto de Origem: <span style="color:var(--accent-yellow)">[Usina Central]</span>
+    Distribui energia para:
+    &gt;&gt;&gt; Subestacao Norte (Distancia do cabo: <span style="color:var(--accent-orange)">10.5 km</span>)
+    &gt;&gt;&gt; Subestacao Sul (Distancia do cabo: <span style="color:var(--accent-orange)">15.0 km</span>)
+-----------------------------------------
+[O] Ponto de Origem: <span style="color:var(--accent-yellow)">[Subestacao Norte]</span>
+    Distribui energia para:
+    &gt;&gt;&gt; Poste Rua A (Distancia do cabo: <span style="color:var(--accent-orange)">2.0 km</span>)
+-----------------------------------------
+[O] Ponto de Origem: <span style="color:var(--accent-yellow)">[Subestacao Sul]</span>
+    Distribui energia para:
+    &gt;&gt;&gt; Poste Rua B (Distancia do cabo: <span style="color:var(--accent-orange)">3.5 km</span>)
+-----------------------------------------
+[O] Ponto de Origem: <span style="color:var(--accent-yellow)">[Poste Rua A]</span>
+    [X] Fim de linha (Nao distribui para mais ninguem).
+-----------------------------------------
+[O] Ponto de Origem: <span style="color:var(--accent-yellow)">[Poste Rua B]</span>
+    [X] Fim de linha (Nao distribui para mais ninguem).</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Busca em Largura (BFS) -->
+            <div class="slide">
+                <div class="cartao-vidro layout-duplo" style="grid-template-columns: 1fr 1fr;">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                            <span class="terminal-title">BuscaEmLargura()</span>
+                        </div>
+                        <div class="terminal-body">
+<pre><code><span class="kw">public void</span> <span class="fn">BuscaEmLargura</span>() {
+    <span class="type">ArrayList</span>&lt;<span class="type">Vertice</span>&lt;TIPO&gt;&gt; marcados = <span class="kw">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+    <span class="type">ArrayList</span>&lt;<span class="type">Vertice</span>&lt;TIPO&gt;&gt; fila = <span class="kw">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+
+    <span class="type">Vertice</span>&lt;TIPO&gt; atual = <span class="kw">this</span>.vertices.<span class="fn">get</span>(<span class="num">0</span>);
+    marcados.<span class="fn">add</span>(atual);
+    fila.<span class="fn">add</span>(atual);
+
+    <span class="kw">while</span> (fila.<span class="fn">size</span>() &gt; <span class="num">0</span>) {
+        <span class="type">Vertice</span>&lt;TIPO&gt; visitado = fila.<span class="fn">get</span>(<span class="num">0</span>);
+
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; visitado.<span class="fn">getArestasSaida</span>().<span class="fn">size</span>(); i++) {
+            <span class="type">Vertice</span>&lt;TIPO&gt; proximo = visitado.<span class="fn">getArestasSaida</span>().<span class="fn">get</span>(i).<span class="fn">getFim</span>();
+
+            <span class="kw">if</span> (!marcados.<span class="fn">contains</span>(proximo)) {
+                marcados.<span class="fn">add</span>(proximo);
+                fila.<span class="fn">add</span>(proximo);
+            }
+        }
+        fila.<span class="fn">remove</span>(<span class="num">0</span>);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Busca em Largura (BFS)</h2>
+                        <p>O algoritmo <strong>BFS (Breadth-First Search)</strong> foi implementado com uma Fila (<code>ArrayList</code>) e uma lista de <code>marcados</code> para evitar loops.</p>
+                        <p>Ele simula perfeitamente a lógica de propagação física: a energia elétrica flui em ondas, alimentando primeiro as subestações diretas, antes de alcançar os postes mais distantes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Fluxo BFS Saída -->
+            <div class="slide">
+                <div class="cartao-vidro" style="align-items: center; justify-content: center; text-align: center;">
+                    <div class="badge-neon">O Fluxo da Energia</div>
+                    <h2 style="justify-content: center;">Execução da Busca em Largura</h2>
+                    <p style="margin-bottom: 40px; max-width: 800px;">A ordem em que o algoritmo processou os vértices mostra exatamente o trajeto da energia sendo "ligada" passo a passo pela rede de cabos.</p>
+                    
+                    <div class="terminal-window" style="width: 100%; max-width: 800px; text-align: left;">
+                        <div class="terminal-header">
+                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                            <span class="terminal-title">Saída do Console (BFS)</span>
+                        </div>
+                        <div class="terminal-body" style="font-size: 1.1rem; line-height: 2;">
+<pre><code>=========================================
+<span style="color: var(--accent-yellow);">⚡ LIGANDO A ENERGIA (BUSCA EM LARGURA) ⚡</span>
+=========================================
+[INICIO] Ponto de partida: [ <span style="color: var(--accent-yellow);">Usina Central</span> ]
+   ---&gt; Energia fluiu para: [ Subestacao Norte ]
+   ---&gt; Energia fluiu para: [ Subestacao Sul ]
+   ---&gt; Energia fluiu para: [ Poste Rua A ]
+   ---&gt; Energia fluiu para: [ Poste Rua B ]</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Encerramento -->
+            <div class="slide">
+                <div class="cartao-vidro" style="align-items: center; justify-content: center; text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🚀</div>
+                    <h2 style="justify-content: center; font-size: 3.5rem;">Muito Obrigado!</h2>
+                    <p style="font-size: 1.4rem; color: var(--text-muted); max-width: 700px; margin: 0 auto;">
+                        A aplicação da teoria dos grafos simplifica e otimiza a simulação de problemas complexos do mundo real.
+                    </p>
+                    
+                    <div style="margin-top: 50px; padding: 30px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); text-align: left; display: inline-block;">
+                        <p style="margin-bottom: 15px; color: #fff; font-weight: 600; font-size: 1.2rem;">Possíveis Melhorias / Próximos Passos:</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 10px;">🔸 Identificar o caminho mais curto usando o <strong>Algoritmo de Dijkstra</strong>.</li>
+                            <li style="margin-bottom: 10px;">🔸 Simular falhas de transmissão com a <strong>remoção de arestas/vértices</strong>.</li>
+                            <li>🔸 Expandir para uma escala nacional com <strong>Grafos Ponderados Dinâmicos</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="btn-nav prev">&lt;</button>
+        <button class="btn-nav next">&gt;</button>
+        <div class="barra-progresso"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
