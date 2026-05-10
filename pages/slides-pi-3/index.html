@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Gestao de Residuos</title>
+    <link rel="icon" href="../../public/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="presentation-shell">
+        <header class="deck-topbar">
+            <div>
+                <span class="deck-kicker">Projeto Integrador III</span>
+                <strong>EcoTrack</strong>
+            </div>
+            <div class="topbar-meta">
+                <span>Angular + JSON Server</span>
+                <span id="slide-indicator">01 / 12</span>
+            </div>
+        </header>
+
+        <main class="deck" aria-live="polite">
+            <section class="slide active theme-green" data-title="Capa">
+                <div class="cover-layout">
+                    <div class="cover-copy">
+                        <span class="section-label">Sistema de gestão ambiental</span>
+                        <h1>EcoTrack: controle de manifestos de resíduos</h1>
+                        <p class="lead">Aplicação Angular para registrar geradores, transportadoras, resíduos e manifestos MTR, com cálculo automático de prazo de descarte e controle de acesso.</p>
+
+                        <div class="team-strip">
+                            <span>Lucas Andrade</span>
+                            <span>Ramone</span>
+                            <span>Pedro Gabriel</span>
+                            <span>Miguel Conceicao</span>
+                        </div>
+                    </div>
+
+                    <div class="flow-visual" aria-label="Fluxo resumido do EcoTrack">
+                        <div class="flow-node generator">
+                            <i class="fa-solid fa-industry"></i>
+                            <span>Gerador</span>
+                        </div>
+                        <div class="flow-node waste">
+                            <i class="fa-solid fa-flask-vial"></i>
+                            <span>Resíduo</span>
+                        </div>
+                        <div class="flow-node carrier">
+                            <i class="fa-solid fa-truck"></i>
+                            <span>Transportadora</span>
+                        </div>
+                        <div class="flow-node manifesto">
+                            <i class="fa-solid fa-file-signature"></i>
+                            <span>Manifesto MTR</span>
+                        </div>
+                        <div class="flow-node dashboard">
+                            <i class="fa-solid fa-chart-simple"></i>
+                            <span>Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-amber" data-title="Problema">
+                <div class="two-column">
+                    <div class="slide-copy">
+                        <span class="section-label">Problema resolvido</span>
+                        <h2>Não é só cadastrar dados. É controlar risco.</h2>
+                        <ul class="bullet-list">
+                            <li>Resíduos perigosos precisam de rastreabilidade: origem, tipo, quantidade, transporte e prazo.</li>
+                            <li>O manifesto concentra as relações entre gerador, resíduo e transportadora.</li>
+                            <li>O diferencial técnico está em validar dados e automatizar decisões que seriam manuais.</li>
+                        </ul>
+                    </div>
+
+                    <div class="concept-map">
+                        <div class="map-center">
+                            <strong>MTR</strong>
+                            <span>documento principal</span>
+                        </div>
+                        <div class="map-item item-a">CNPJ válido</div>
+                        <div class="map-item item-b">Classe do resíduo</div>
+                        <div class="map-item item-c">Prazo de descarte</div>
+                        <div class="map-item item-d">Status operacional</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-teal" data-title="Arquitetura">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Arquitetura</span>
+                        <h2>MVC simulado dentro do Angular</h2>
+                        <p>O projeto usa componentes para a interface, services para dados e regras, e models para manter os contratos claros.</p>
+                    </div>
+
+                    <div class="architecture-grid">
+                        <article class="architecture-block">
+                            <span class="block-tag">Model</span>
+                            <h3>models.ts</h3>
+                            <p>Define Usuario, Gerador, Transportadora, Residuo, Manifesto e ManifestoView.</p>
+                        </article>
+                        <article class="architecture-block">
+                            <span class="block-tag">Service</span>
+                            <h3>services/*</h3>
+                            <p>Centraliza HTTP, CRUD, validação de CNPJ, autenticação e regra de prazo.</p>
+                        </article>
+                        <article class="architecture-block">
+                            <span class="block-tag">View</span>
+                            <h3>pages/*</h3>
+                            <p>Material table, stepper, chips, formularios reativos e dashboard.</p>
+                        </article>
+                    </div>
+
+                    <pre class="code-window compact"><code>src/app/
+|-- models/models.ts
+|-- services/manifesto.service.ts
+|-- services/validacao.service.ts
+|-- guards/auth.guard.ts
+|-- pages/manifestos/
+`-- pages/dashboard/</code></pre>
+                </div>
+            </section>
+
+            <section class="slide theme-purple" data-title="Modelo de Dados">
+                <div class="two-column wide-left">
+                    <div class="slide-copy">
+                        <span class="section-label">Modelagem</span>
+                        <h2>O Manifesto e o ponto de encontro do sistema</h2>
+                        <p class="lead small">A estrutura evita dados soltos: cada MTR referencia uma empresa geradora, uma transportadora e um tipo de resíduo.</p>
+
+                        <div class="entity-grid">
+                            <div class="entity-pill">Usuário</div>
+                            <div class="entity-pill">Gerador</div>
+                            <div class="entity-pill">Transportadora</div>
+                            <div class="entity-pill">Resíduo</div>
+                            <div class="entity-pill highlight">Manifesto</div>
+                        </div>
+                    </div>
+
+                    <pre class="code-window"><code>export interface Manifesto {
+  numero: string;
+  geradorId: string;
+  transportadoraId: string;
+  residuoId: string;
+  quantidade: number;
+  dataGeracao: string;
+  prazoDescarte: string;
+  status: 'pendente' | 'transportado' | 'finalizado';
+}</code></pre>
+                </div>
+            </section>
+
+            <section class="slide theme-green" data-title="Backend Simulado">
+                <div class="two-column">
+                    <div class="slide-copy">
+                        <span class="section-label">Backend acadêmico</span>
+                        <h2>JSON Server como API REST simulada</h2>
+                        <ul class="bullet-list">
+                            <li>O `db.json` guarda usuários, geradores, transportadoras, resíduos e manifestos.</li>
+                            <li>Os services acessam `environment.apiUrl`, mantendo a tela separada da fonte de dados.</li>
+                            <li>O script `dev` sobe backend e Angular para facilitar a demonstração.</li>
+                        </ul>
+                    </div>
+
+                    <div class="endpoint-panel">
+                        <div class="endpoint-row"><span>GET</span><strong>/manifestos</strong></div>
+                        <div class="endpoint-row"><span>POST</span><strong>/geradores</strong></div>
+                        <div class="endpoint-row"><span>PATCH</span><strong>/manifestos/:id</strong></div>
+                        <div class="endpoint-row"><span>GET</span><strong>/usuarios?email=&amp;senha=</strong></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-red" data-title="Seguranca">
+                <div class="two-column">
+                    <div class="slide-copy">
+                        <span class="section-label">Login e permissao</span>
+                        <h2>Rotas protegidas por perfil</h2>
+                        <ul class="bullet-list">
+                            <li>`authGuard` bloqueia paginas internas quando nao existe usuário logado.</li>
+                            <li>`adminGuard` limita o cadastro de usuários ao administrador.</li>
+                            <li>A sessão fica no `sessionStorage`, suficiente para a proposta acadêmica e para a demo.</li>
+                        </ul>
+                    </div>
+
+                    <pre class="code-window"><code>export const adminGuard: CanActivateFn = () =&gt; {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+
+  if (auth.isAdmin()) return true;
+
+  router.navigate(['/dashboard']);
+  return false;
+};</code></pre>
+                </div>
+            </section>
+
+            <section class="slide theme-amber" data-title="Validacao CNPJ">
+                <div class="two-column wide-right">
+                    <div class="slide-copy">
+                        <span class="section-label">Consistência dos dados</span>
+                        <h2>Validação real de CNPJ no formulário</h2>
+                        <ul class="bullet-list">
+                            <li>A máscara melhora a digitacao, mas a regra importante e o digito verificador.</li>
+                            <li>O validator retorna `cnpjInvalido` e impede o submit do formulário.</li>
+                            <li>A mesma regra e reutilizada em geradores e transportadoras.</li>
+                        </ul>
+
+                        <div class="form-demo">
+                            <label>CNPJ</label>
+                            <div class="input-row invalid">11.111.111/1111-11</div>
+                            <span>Submit bloqueado: dígito verificador inválido.</span>
+                        </div>
+                    </div>
+
+                    <pre class="code-window"><code>const d1 = calcDigito(numeros.slice(0, 12), pesos1);
+const d2 = calcDigito(numeros.slice(0, 13), pesos2);
+
+return d1 === parseInt(numeros[12])
+  &amp;&amp; d2 === parseInt(numeros[13]);</code></pre>
+                </div>
+            </section>
+
+            <section class="slide theme-teal" data-title="Fluxo Manifesto">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">CRUD principal</span>
+                        <h2>Cadastro de MTR em três etapas</h2>
+                        <p>O `mat-stepper` transforma um formulário longo em um fluxo guiado: gerador, resíduo e transportadora.</p>
+                    </div>
+
+                    <div class="stepper-visual">
+                        <div class="step-block">
+                            <span>1</span>
+                            <i class="fa-solid fa-industry"></i>
+                            <strong>Gerador</strong>
+                            <small>empresa que produziu o resíduo</small>
+                        </div>
+                        <div class="step-block">
+                            <span>2</span>
+                            <i class="fa-solid fa-biohazard"></i>
+                            <strong>Resíduo</strong>
+                            <small>tipo, classe, quantidade e data</small>
+                        </div>
+                        <div class="step-block">
+                            <span>3</span>
+                            <i class="fa-solid fa-truck-fast"></i>
+                            <strong>Transportadora</strong>
+                            <small>responsável pela movimentação</small>
+                        </div>
+                    </div>
+
+                    <pre class="code-window compact"><code>this.manifestoService.criarNovo({
+  geradorId: this.stepGerador.value.geradorId,
+  transportadoraId: this.stepTransportadora.value.transportadoraId,
+  residuoId,
+  classeResiduo: residuo.classe,
+  quantidade,
+  dataGeracao
+});</code></pre>
+                </div>
+            </section>
+
+            <section class="slide theme-green" data-title="Regra de Prazo">
+                <div class="two-column">
+                    <div class="slide-copy">
+                        <span class="section-label">Diferencial tecnico</span>
+                        <h2>Prazo de descarte calculado pela classe do resíduo</h2>
+                        <ul class="bullet-list">
+                            <li>Classe I: ate 90 dias.</li>
+                            <li>Classe II-A: ate 180 dias.</li>
+                            <li>Classe II-B: ate 365 dias.</li>
+                            <li>A data aparece no formulário antes de salvar o manifesto.</li>
+                        </ul>
+                    </div>
+
+                    <div class="rule-layout">
+                        <pre class="code-window small-code"><code>const PRAZO_POR_CLASSE = {
+  I: 90,
+  'II-A': 180,
+  'II-B': 365,
+};
+
+data.setDate(data.getDate() + dias);</code></pre>
+                        <div class="timeline">
+                            <span>Data de geração</span>
+                            <strong>+ dias por classe</strong>
+                            <span>Prazo máximo</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-purple" data-title="Service com Detalhes">
+                <div class="two-column wide-right">
+                    <div class="slide-copy">
+                        <span class="section-label">Services</span>
+                        <h2>Lista enriquecida para a tabela</h2>
+                        <ul class="bullet-list">
+                            <li>O manifesto salva apenas IDs, como em um banco normalizado.</li>
+                            <li>`listarComDetalhes` junta as coleções e entrega uma `ManifestoView` pronta para a tela.</li>
+                            <li>Isso deixa o HTML simples e concentra a montagem dos dados no service.</li>
+                        </ul>
+                    </div>
+
+                    <pre class="code-window"><code>return forkJoin({
+  manifestos: this.http.get&lt;Manifesto[]&gt;(...),
+  geradores: this.geradorService.listar(),
+  transportadoras: this.transportadoraService.listar(),
+  residuos: this.residuoService.listar(),
+}).pipe(
+  map(({ manifestos, geradores, transportadoras, residuos }) =&gt;
+    manifestos.map((m) =&gt; ({
+      ...m,
+      gerador: geradores.find((g) =&gt; g.id === m.geradorId),
+      transportadora: transportadoras.find((t) =&gt; t.id === m.transportadoraId),
+      residuo: residuos.find((r) =&gt; r.id === m.residuoId),
+    }))
+  )
+);</code></pre>
+                </div>
+            </section>
+
+            <section class="slide theme-red" data-title="Dashboard">
+                <div class="two-column">
+                    <div class="slide-copy">
+                        <span class="section-label">Operacao</span>
+                        <h2>Dashboard transforma registros em alerta</h2>
+                        <ul class="bullet-list">
+                            <li>Contadores por status: pendente, transportado e finalizado.</li>
+                            <li>Identificação de manifestos vencendo em até 30 dias.</li>
+                            <li>Chips visuais indicam status, tipo de resíduo e criticidade do prazo.</li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-mock">
+                        <div class="metric-card status-pending">
+                            <i class="fa-solid fa-hourglass-half"></i>
+                            <strong>Pendentes</strong>
+                            <span>controle ativo</span>
+                        </div>
+                        <div class="metric-card status-moving">
+                            <i class="fa-solid fa-truck"></i>
+                            <strong>Transportados</strong>
+                            <span>em andamento</span>
+                        </div>
+                        <div class="metric-card status-alert">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <strong>Vencendo</strong>
+                            <span>prioridade da operação</span>
+                        </div>
+                        <pre class="code-window mini-code"><code>vencendo: lista.filter((m) =&gt; {
+  const dias = this.manifestoService
+    .diasParaVencer(m.prazoDescarte);
+  return m.status === 'pendente'
+    &amp;&amp; dias &lt;= 30
+    &amp;&amp; dias &gt;= 0;
+}).length</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-green" data-title="Roteiro">
+                <div class="closing-layout">
+                    <div class="slide-copy">
+                        <span class="section-label">Como apresentar</span>
+                        <h2>Roteiro de demo em fluxo</h2>
+                    </div>
+
+                    <ol class="demo-list">
+                        <li><strong>Login:</strong> entrar como administrador e mostrar o menu de usuários.</li>
+                        <li><strong>CNPJ:</strong> tentar cadastrar gerador com CNPJ inválido e mostrar o bloqueio.</li>
+                        <li><strong>MTR:</strong> criar manifesto pelo stepper e destacar o prazo calculado.</li>
+                        <li><strong>Tabela:</strong> filtrar por status e alterar para transportado/finalizado.</li>
+                        <li><strong>Dashboard:</strong> fechar mostrando contadores e alertas de prazo.</li>
+                    </ol>
+
+                    <div class="final-message">
+                        <strong>Mensagem final</strong>
+                        <p>O projeto demonstra CRUD completo, separação em camadas, validação de dados, proteção de rotas e uma regra de negócio ligada diretamente ao contexto de logística ambiental.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="deck-footer">
+            <button class="nav-button prev" type="button" aria-label="Slide anterior">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </button>
+            <div class="progress-track" aria-hidden="true">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+            <button class="nav-button next" type="button" aria-label="Proximo slide">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
