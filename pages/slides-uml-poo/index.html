@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UML e POO: Diagrama de Classes</title>
+    <meta name="description" content="Apresentação técnica sobre UML, diagrama de classes e relacionamentos em Programação Orientada a Objetos.">
+    <link rel="icon" href="../../public/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="presentation-shell">
+        <header class="deck-topbar">
+            <div>
+                <span class="deck-kicker">Programação Orientada a Objetos</span>
+                <strong>UML: especificação visual de sistemas</strong>
+            </div>
+            <div class="topbar-meta">
+                <span>Diagrama de Classes</span>
+                <span id="slide-indicator">01 / 13</span>
+            </div>
+        </header>
+
+        <main class="deck" aria-live="polite">
+            <section class="slide active theme-blue" data-title="Capa">
+                <div class="cover-layout">
+                    <div class="cover-copy">
+                        <span class="section-label">Grupo 1</span>
+                        <h1>UML não é desenho. É especificação.</h1>
+                        <p class="lead">Uma linguagem padrão para representar classes, objetos, responsabilidades e relações sem depender de interpretação informal.</p>
+
+                        <div class="anchor-strip" aria-label="Tópicos principais">
+                            <span>Classe</span>
+                            <span>Associação</span>
+                            <span>Multiplicidade</span>
+                            <span>Agregação</span>
+                            <span>Composição</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-board" aria-label="Exemplo visual de diagrama de classes" style="display: flex; align-items: center; justify-content: center; padding: 24px;">
+                        <img src="images/image.png" alt="Diagrama de Classes UML" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 16px; border: 1px solid var(--line); box-shadow: 0 0 30px rgba(0,0,0,0.4);">
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-green" data-title="O Que É UML">
+                <div class="two-column">
+                    <div class="slide-copy">
+                        <span class="section-label">Definição</span>
+                        <h2>UML é linguagem, não processo.</h2>
+                        <ul class="bullet-list">
+                            <li>É uma linguagem de modelagem padrão, mantida pelo OMG.</li>
+                            <li>Serve para especificar, visualizar, construir e documentar artefatos de software.</li>
+                            <li>Não define como a equipe trabalha; define como o sistema é representado.</li>
+                        </ul>
+                    </div>
+
+                    <div class="definition-panel">
+                        <div class="definition-row">
+                            <i class="fa-solid fa-language"></i>
+                            <div>
+                                <strong>Linguagem</strong>
+                                <span>Vocabulário visual compartilhado.</span>
+                            </div>
+                        </div>
+                        <div class="definition-row muted-row">
+                            <i class="fa-solid fa-route"></i>
+                            <div>
+                                <strong>Processo</strong>
+                                <span>Sequência de trabalho da equipe.</span>
+                            </div>
+                        </div>
+                        <div class="callout">
+                            <strong>A falha comum</strong>
+                            <p>Tratar UML como metodologia. Ela não manda fazer cascata, Scrum ou protótipo; ela padroniza a representação técnica.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-amber" data-title="Diagrama de Classes">
+                <div class="two-column wide-right">
+                    <div class="slide-copy">
+                        <span class="section-label">Foco da apresentação</span>
+                        <h2>O diagrama de classes mostra a estrutura estática.</h2>
+                        <ul class="bullet-list">
+                            <li>Classes representam conceitos relevantes do domínio.</li>
+                            <li>Atributos descrevem dados mantidos por cada objeto.</li>
+                            <li>Operações descrevem comportamentos oferecidos pela classe.</li>
+                            <li>Relacionamentos mostram como os objetos se conectam.</li>
+                        </ul>
+                    </div>
+
+                    <div class="class-anatomy" aria-label="Estrutura de uma classe UML">
+                        <div class="class-title">
+                            <span>Classe</span>
+                            <strong>Pedido</strong>
+                        </div>
+                        <div class="class-section">
+                            <span>- código: String</span>
+                            <span>- data: Date</span>
+                            <span>- total: Decimal</span>
+                        </div>
+                        <div class="class-section">
+                            <span>+ calcularTotal(): Decimal</span>
+                            <span>+ confirmar(): void</span>
+                        </div>
+                        <div class="legend-grid">
+                            <span><b>+</b> público</span>
+                            <span><b>-</b> privado</span>
+                            <span><b>#</b> protegido</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-red" data-title="Relacionamentos">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Vocabulário estrutural</span>
+                        <h2>Relacionamento não é enfeite: é contrato entre classes.</h2>
+                        <p>O tipo da linha informa dependência, conhecimento, especialização ou implementação.</p>
+                    </div>
+
+                    <div class="relationship-grid">
+                        <article class="relationship-card">
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <strong>Dependência</strong>
+                            <span>Uma classe usa outra temporariamente, geralmente em um método.</span>
+                        </article>
+                        <article class="relationship-card">
+                            <i class="fa-solid fa-link"></i>
+                            <strong>Associação</strong>
+                            <span>Objetos estão conectados de forma estrutural.</span>
+                        </article>
+                        <article class="relationship-card">
+                            <i class="fa-solid fa-code-branch"></i>
+                            <strong>Generalização</strong>
+                            <span>Uma classe especializada herda de outra classe.</span>
+                        </article>
+                        <article class="relationship-card">
+                            <i class="fa-solid fa-puzzle-piece"></i>
+                            <strong>Realização</strong>
+                            <span>Uma classe implementa uma interface.</span>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-purple" data-title="Associação">
+                <div class="two-column">
+                    <div class="slide-copy">
+                        <span class="section-label">Associação simples</span>
+                        <h2>Associação indica que uma classe conhece outra.</h2>
+                        <ul class="bullet-list">
+                            <li>É uma conexão estrutural entre objetos.</li>
+                            <li>Não indica posse forte nem destruição automática.</li>
+                            <li>Com multiplicidade, a linha deixa de ser vaga e passa a comunicar quantidade.</li>
+                        </ul>
+                    </div>
+
+                    <div class="association-board">
+                        <div class="mini-class">Professor</div>
+                        <div class="association-line">
+                            <span class="left-mark">0..*</span>
+                            <span class="line-label">orienta</span>
+                            <span class="right-mark">0..*</span>
+                        </div>
+                        <div class="mini-class">Aluno</div>
+                        <div class="question-box">
+                            <strong>Sem multiplicidade?</strong>
+                            <p>A equipe não sabe se um professor orienta um aluno, muitos alunos ou nenhum aluno.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-blue" data-title="Multiplicidade">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Precisão do modelo</span>
+                        <h2>Multiplicidade responde: quantos objetos podem participar?</h2>
+                    </div>
+
+                    <div class="multiplicity-grid">
+                        <article>
+                            <strong>1</strong>
+                            <span>Exatamente um.</span>
+                        </article>
+                        <article>
+                            <strong>0..1</strong>
+                            <span>Nenhum ou um.</span>
+                        </article>
+                        <article>
+                            <strong>1..*</strong>
+                            <span>Um ou muitos.</span>
+                        </article>
+                        <article>
+                            <strong>0..*</strong>
+                            <span>Nenhum ou muitos.</span>
+                        </article>
+                    </div>
+
+                    <div class="wide-callout">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <p>Uma associação sem multiplicidade é uma informação incompleta. O código pode acabar aceitando estados que o domínio não permite.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-green" data-title="Navegabilidade">
+                <div class="two-column wide-left">
+                    <div class="slide-copy">
+                        <span class="section-label">Direção do conhecimento</span>
+                        <h2>Navegabilidade vira referência no código.</h2>
+                        <ul class="bullet-list">
+                            <li>Seta em uma ponta: apenas uma classe conhece a outra.</li>
+                            <li>Sem seta explícita: a leitura pode ser bidirecional ou indefinida, dependendo da convenção.</li>
+                            <li>Em POO, isso afeta atributos, acoplamento e dependências entre módulos.</li>
+                        </ul>
+                    </div>
+
+                    <div class="navigation-demo">
+                        <div class="mini-class">Pedido</div>
+                        <div class="nav-arrow" aria-hidden="true"></div>
+                        <div class="mini-class">Cliente</div>
+                        <pre class="code-window"><code>class Order {
+  constructor(customer) {
+    this.customer = customer;
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-amber" data-title="Agregação">
+                <div class="two-column">
+                    <div class="slide-copy">
+                        <span class="section-label">Todo-Parte fraco</span>
+                        <h2>Agregação preserva o ciclo de vida da parte.</h2>
+                        <ul class="bullet-list">
+                            <li>O todo agrupa partes, mas não é dono absoluto delas.</li>
+                            <li>A parte pode existir antes, durante e depois do todo.</li>
+                            <li>Use quando a relação representa pertencimento fraco ou compartilhado.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lifecycle-board">
+                        <div class="diagram-row">
+                            <div class="mini-class whole">Departamento</div>
+                            <div class="diamond-line empty-diamond">
+                                <span>1</span>
+                                <span>0..*</span>
+                            </div>
+                            <div class="mini-class part">Professor</div>
+                        </div>
+                        <div class="lifecycle-result">
+                            <i class="fa-solid fa-unlock"></i>
+                            <div>
+                                <strong>Departamento excluído</strong>
+                                <span>Professor continua existindo no sistema.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-red" data-title="Composição">
+                <div class="two-column">
+                    <div class="slide-copy">
+                        <span class="section-label">Todo-Parte forte</span>
+                        <h2>Composição amarra o ciclo de vida da parte.</h2>
+                        <ul class="bullet-list">
+                            <li>O todo possui as partes de forma estrita.</li>
+                            <li>A parte não faz sentido fora do todo.</li>
+                            <li>Se o todo é destruído, as partes também deixam de existir.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lifecycle-board intense">
+                        <div class="diagram-row">
+                            <div class="mini-class whole">Casa</div>
+                            <div class="diamond-line filled-diamond">
+                                <span>1</span>
+                                <span>1..*</span>
+                            </div>
+                            <div class="mini-class part">Cômodo</div>
+                        </div>
+                        <div class="lifecycle-result">
+                            <i class="fa-solid fa-lock"></i>
+                            <div>
+                                <strong>Casa excluída</strong>
+                                <span>Cômodos também são removidos.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-purple" data-title="Comparação">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Diferença geral</span>
+                        <h2>Associação, agregação e composição não têm o mesmo peso.</h2>
+                    </div>
+
+                    <div class="comparison-table" role="table" aria-label="Comparação entre associação, agregação e composição">
+                        <div class="table-row table-head" role="row">
+                            <span role="columnheader">Característica</span>
+                            <span role="columnheader">Associação</span>
+                            <span role="columnheader">Agregação</span>
+                            <span role="columnheader">Composição</span>
+                        </div>
+                        <div class="table-row" role="row">
+                            <span>Natureza</span>
+                            <span>Conexão simples</span>
+                            <span>Todo-Parte fraco</span>
+                            <span>Todo-Parte restrito</span>
+                        </div>
+                        <div class="table-row" role="row">
+                            <span>Ciclo de vida</span>
+                            <span>Independente</span>
+                            <span>Independente</span>
+                            <span>Parte depende do todo</span>
+                        </div>
+                        <div class="table-row" role="row">
+                            <span>Exemplo</span>
+                            <span>Professor e Aluno</span>
+                            <span>Empresa e Unidade</span>
+                            <span>Arquivo e Página</span>
+                        </div>
+                        <div class="table-row" role="row">
+                            <span>Acoplamento</span>
+                            <span>Baixo</span>
+                            <span>Médio</span>
+                            <span>Alto</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-blue" data-title="Impacto no Código">
+                <div class="two-column wide-right">
+                    <div class="slide-copy">
+                        <span class="section-label">Da UML para a POO</span>
+                        <h2>A escolha do símbolo muda o código.</h2>
+                        <ul class="bullet-list">
+                            <li>Agregação costuma receber objetos já existentes.</li>
+                            <li>Composição costuma criar, controlar e remover suas partes.</li>
+                            <li>O desenho informa quem gerencia memória, persistência e exclusão.</li>
+                        </ul>
+                    </div>
+
+                    <pre class="code-window"><code>class House {
+  constructor() {
+    this.rooms = [new Room("Sala"), new Room("Quarto")];
+  }
+
+  remove() {
+    this.rooms = [];
+  }
+}
+
+class Department {
+  constructor(professors) {
+    this.professors = professors;
+  }
+}</code></pre>
+                </div>
+            </section>
+
+            <section class="slide theme-green" data-title="Erros Comuns">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Análise crítica</span>
+                        <h2>Três erros deixam o modelo superficial.</h2>
+                    </div>
+
+                    <div class="mistake-grid">
+                        <article>
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <strong>Seta para tudo</strong>
+                            <span>Transforma relações diferentes em uma mesma associação vaga.</span>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-hashtag"></i>
+                            <strong>Sem multiplicidade</strong>
+                            <span>Remove a regra de quantidade e abre margem para estados inválidos.</span>
+                        </article>
+                        <article>
+                            <i class="fa-solid fa-gem"></i>
+                            <strong>Composição falsa</strong>
+                            <span>Declara posse forte onde o domínio permite existência independente.</span>
+                        </article>
+                    </div>
+
+                    <div class="wide-callout compact">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <p>O rigor aparece quando o grupo justifica por que uma linha é associação, agregação ou composição.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-amber" data-title="Conclusão">
+                <div class="closing-layout">
+                    <div class="slide-copy">
+                        <span class="section-label">Fechamento do Grupo 1</span>
+                        <h2>O objetivo é modelar decisões, não decorar símbolos.</h2>
+                    </div>
+
+                    <div class="closing-grid">
+                        <article>
+                            <strong>Para comunicar</strong>
+                            <span>UML reduz ambiguidade entre quem analisa, programa e mantém o sistema.</span>
+                        </article>
+                        <article>
+                            <strong>Para implementar</strong>
+                            <span>O diagrama orienta atributos, referências, herança, interfaces e exclusão de objetos.</span>
+                        </article>
+                        <article>
+                            <strong>Para questionar</strong>
+                            <span>A pergunta central é: quem conhece, quem possui e quem depende de quem?</span>
+                        </article>
+                    </div>
+
+                    <div class="final-question">
+                        <strong>Exemplo para a turma</strong>
+                        <p>Se um departamento acaba, o professor continua. Se uma casa deixa de existir no sistema, seus cômodos também deixam. Essa diferença de ciclo de vida é o coração da distinção entre agregação e composição.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="deck-footer" aria-label="Navegação da apresentação">
+            <button class="nav-button prev" type="button" aria-label="Slide anterior">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            </button>
+            <div class="progress-track" aria-hidden="true">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+            <button class="nav-button next" type="button" aria-label="Próximo slide">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
