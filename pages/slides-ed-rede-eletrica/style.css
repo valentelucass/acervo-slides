@@ -313,3 +313,26 @@ code { font-family: inherit; }
     margin-bottom: 20px;
     box-shadow: 0 0 15px rgba(255, 107, 0, 0.1);
 }
+
+/* Fullscreen Imersivo */
+:fullscreen .container-slides {
+    padding: 0 !important;
+    background: #000 !important;
+}
+
+:fullscreen .trilha-slides {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+:fullscreen .slide {
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+}
+
+:fullscreen .btn-nav, 
+:fullscreen .barra-progresso,
+:fullscreen .bg-grid {
+    display: none !important;
+}

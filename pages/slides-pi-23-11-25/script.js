@@ -44,12 +44,39 @@ document.addEventListener('DOMContentLoaded', () => {
     btnProx.addEventListener('click', proximoSlide);
     btnAnt.addEventListener('click', slideAnterior);
 
+    window.toggleFullscreen = function() {
+        const shell = document.querySelector('.container-slides');
+        if (!document.fullscreenElement) {
+            shell.requestFullscreen().catch(err => {
+                console.error(`Erro: ${err.message}`);
+            });
+        } else {
+            if (document.exitFullscreen) document.exitFullscreen();
+        }
+    };
+
     // Teclado
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === ' ') {
+        const forward = ['ArrowRight', 'PageDown', ' ', 'Enter'];
+        const backward = ['ArrowLeft', 'PageUp', 'Backspace'];
+
+        if (forward.includes(e.key)) {
+            e.preventDefault();
             proximoSlide();
-        } else if (e.key === 'ArrowLeft') {
+        } else if (backward.includes(e.key)) {
+            e.preventDefault();
             slideAnterior();
+        } else if (e.key.toLowerCase() === 'f') {
+            e.preventDefault();
+            toggleFullscreen();
+        } else if (e.key === 'Home') {
+            e.preventDefault();
+            slideAtual = 0;
+            atualizarSlide();
+        } else if (e.key === 'End') {
+            e.preventDefault();
+            slideAtual = totalSlides - 1;
+            atualizarSlide();
         }
     });
 

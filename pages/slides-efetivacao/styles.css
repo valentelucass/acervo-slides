@@ -789,8 +789,38 @@ body {
     width: 42px;
     height: 90px;
     border: none;
-    border-radius: 0;
-    background: transparent;
+    border-radius: 6px;
+    background: var(--surface-light);
+}
+
+/* Fullscreen Imersivo */
+:fullscreen .page-shell {
+    padding: 0 !important;
+    background: #000 !important;
+}
+
+:fullscreen .deck-stage {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+:fullscreen .deck-card {
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    max-width: none !important;
+}
+
+:fullscreen .nav-arrow,
+:fullscreen .ambient,
+:fullscreen .card-footer {
+    display: none !important;
+}
+
+.nav-arrow {
     color: var(--text-main);
     display: grid;
     place-items: center;

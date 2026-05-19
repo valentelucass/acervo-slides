@@ -663,3 +663,20 @@ code,
     /* Sombra no conteúdo (SVG/IMG) */
     border-color: transparent;
 }
+/* Fullscreen Imersivo */
+:fullscreen .container-slides {
+    padding: 0 !important;
+    background: #000 !important;
+}
+
+:fullscreen .luz-ambiente,
+:fullscreen .next,
+:fullscreen .prev,
+:fullscreen .barra-progresso {
+    display: none !important;
+}
+
+:fullscreen .slide {
+    width: 100vw !important;
+    height: 100vh !important;
+}

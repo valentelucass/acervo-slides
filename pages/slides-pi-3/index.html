@@ -22,7 +22,10 @@
             </div>
             <div class="topbar-meta">
                 <span>Angular + JSON Server</span>
-                <span id="slide-indicator">01 / 12</span>
+                <span id="slide-indicator">01 / 20</span>
+                <button id="fullscreen-button" class="nav-button" type="button" aria-label="Tela cheia">
+                    <i class="fa-solid fa-expand" aria-hidden="true"></i>
+                </button>
             </div>
         </header>
 
@@ -42,26 +45,17 @@
                         </div>
                     </div>
 
-                    <div class="flow-visual" aria-label="Fluxo resumido do EcoTrack">
-                        <div class="flow-node generator">
-                            <i class="fa-solid fa-industry"></i>
-                            <span>Gerador</span>
-                        </div>
-                        <div class="flow-node waste">
-                            <i class="fa-solid fa-flask-vial"></i>
-                            <span>Resíduo</span>
-                        </div>
-                        <div class="flow-node carrier">
-                            <i class="fa-solid fa-truck"></i>
-                            <span>Transportadora</span>
-                        </div>
-                        <div class="flow-node manifesto">
-                            <i class="fa-solid fa-file-signature"></i>
-                            <span>Manifesto MTR</span>
-                        </div>
-                        <div class="flow-node dashboard">
-                            <i class="fa-solid fa-chart-simple"></i>
-                            <span>Dashboard</span>
+                    <div class="hero-visual-container">
+                        <div class="eco-pulse">
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-center">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <div class="floating-node node-1"><i class="fa-solid fa-industry"></i></div>
+                            <div class="floating-node node-2"><i class="fa-solid fa-truck"></i></div>
+                            <div class="floating-node node-3"><i class="fa-solid fa-flask"></i></div>
                         </div>
                     </div>
                 </div>
@@ -79,15 +73,14 @@
                         </ul>
                     </div>
 
-                    <div class="concept-map">
-                        <div class="map-center">
-                            <strong>MTR</strong>
-                            <span>documento principal</span>
+                    <div class="hero-visual-container">
+                        <div class="risk-shield">
+                            <div class="shield-radar"></div>
+                            <div class="shield-base">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div class="shield-scan"></div>
                         </div>
-                        <div class="map-item item-a">CNPJ válido</div>
-                        <div class="map-item item-b">Classe do resíduo</div>
-                        <div class="map-item item-c">Prazo de descarte</div>
-                        <div class="map-item item-d">Status operacional</div>
                     </div>
                 </div>
             </section>
@@ -125,6 +118,10 @@
 |-- guards/auth.guard.ts
 |-- pages/manifestos/
 `-- pages/dashboard/</code></pre>
+                    <div class="code-note">
+                        <strong>Padrão de Camadas</strong>
+                        Concentrar a lógica nos Services permite que os componentes fiquem "burros" e focados apenas na interação com o usuário, facilitando testes e manutenção.
+                    </div>
                 </div>
             </section>
 
@@ -144,15 +141,18 @@
                         </div>
                     </div>
 
-                    <pre class="code-window"><code>export interface Manifesto {
-  numero: string;
-  geradorId: string;
-  transportadoraId: string;
-  residuoId: string;
-  quantidade: number;
-  dataGeracao: string;
-  prazoDescarte: string;
-  status: 'pendente' | 'transportado' | 'finalizado';
+                    <pre class="code-window"><code><span class="token-keyword">export interface</span> <span class="token-type">Manifesto</span> {
+  <span class="token-function">id</span>?: <span class="token-type">string</span>;
+  <span class="token-function">numero</span>: <span class="token-type">string</span>;
+  <span class="token-function">geradorId</span>: <span class="token-type">string</span>;
+  <span class="token-function">transportadoraId</span>: <span class="token-type">string</span>;
+  <span class="token-function">residuoId</span>: <span class="token-type">string</span>;
+  <span class="token-function">quantidade</span>: <span class="token-type">number</span>;
+  <span class="token-function">dataGeracao</span>: <span class="token-type">string</span>;
+  <span class="token-function">prazoDescarte</span>: <span class="token-type">string</span>;
+  <span class="token-function">status</span>: <span class="token-type">StatusManifesto</span>;
+  <span class="token-function">observacoes</span>?: <span class="token-type">string</span>;
+  <span class="token-function">createdAt</span>?: <span class="token-type">string</span>;
 }</code></pre>
                 </div>
             </section>
@@ -190,14 +190,14 @@
                         </ul>
                     </div>
 
-                    <pre class="code-window"><code>export const adminGuard: CanActivateFn = () =&gt; {
-  const auth = inject(AuthService);
-  const router = inject(Router);
+                    <pre class="code-window"><code><span class="token-keyword">export const</span> <span class="token-function">adminGuard</span>: <span class="token-type">CanActivateFn</span> = () <span class="token-operator">=></span> {
+  <span class="token-keyword">const</span> auth = <span class="token-function">inject</span>(<span class="token-type">AuthService</span>);
+  <span class="token-keyword">const</span> router = <span class="token-function">inject</span>(<span class="token-type">Router</span>);
 
-  if (auth.isAdmin()) return true;
+  <span class="token-keyword">if</span> (auth.<span class="token-function">isAdmin</span>()) <span class="token-keyword">return true</span>;
 
-  router.navigate(['/dashboard']);
-  return false;
+  router.<span class="token-function">navigate</span>([<span class="token-string">'/dashboard'</span>]);
+  <span class="token-keyword">return false</span>;
 };</code></pre>
                 </div>
             </section>
@@ -220,20 +220,36 @@
                         </div>
                     </div>
 
-                    <pre class="code-window"><code>const d1 = calcDigito(numeros.slice(0, 12), pesos1);
-const d2 = calcDigito(numeros.slice(0, 13), pesos2);
+                    <pre class="code-window"><code><span class="token-function">validarCNPJ</span>(cnpj: <span class="token-type">string</span>): <span class="token-type">boolean</span> {
+  <span class="token-keyword">const</span> numeros = cnpj.<span class="token-function">replace</span>(<span class="token-operator">/\D/g</span>, <span class="token-string">''</span>);
+  <span class="token-keyword">if</span> (numeros.<span class="token-function">length</span> <span class="token-operator">!==</span> <span class="token-number">14</span>) <span class="token-keyword">return false</span>;
+  <span class="token-keyword">if</span> (<span class="token-operator">/^(\d)\1+$/</span>.<span class="token-function">test</span>(numeros)) <span class="token-keyword">return false</span>;
 
-return d1 === parseInt(numeros[12])
-  &amp;&amp; d2 === parseInt(numeros[13]);</code></pre>
+  <span class="token-keyword">const</span> <span class="token-function">calcDigito</span> = (parcial: <span class="token-type">string</span>, pesos: <span class="token-type">number</span>[]): <span class="token-type">number</span> <span class="token-operator">=></span> {
+    <span class="token-keyword">const</span> soma = parcial.<span class="token-function">split</span>(<span class="token-string">''</span>).<span class="token-function">reduce</span>((acc, d, i) <span class="token-operator">=></span> 
+      acc <span class="token-operator">+</span> <span class="token-function">parseInt</span>(d) <span class="token-operator">*</span> pesos[i], <span class="token-number">0</span>);
+    <span class="token-keyword">const</span> resto = soma <span class="token-operator">%</span> <span class="token-number">11</span>;
+    <span class="token-keyword">return</span> resto <span class="token-operator">&lt;</span> <span class="token-number">2</span> <span class="token-operator">?</span> <span class="token-number">0</span> <span class="token-operator">:</span> <span class="token-number">11</span> <span class="token-operator">-</span> resto;
+  };
+
+  <span class="token-keyword">const</span> pesos1 = [<span class="token-number">5</span>, <span class="token-number">4</span>, <span class="token-number">3</span>, <span class="token-number">2</span>, <span class="token-number">9</span>, <span class="token-number">8</span>, <span class="token-number">7</span>, <span class="token-number">6</span>, <span class="token-number">5</span>, <span class="token-number">4</span>, <span class="token-number">3</span>, <span class="token-number">2</span>];
+  <span class="token-keyword">const</span> pesos2 = [<span class="token-number">6</span>, <span class="token-number">5</span>, <span class="token-number">4</span>, <span class="token-number">3</span>, <span class="token-number">2</span>, <span class="token-number">9</span>, <span class="token-number">8</span>, <span class="token-number">7</span>, <span class="token-number">6</span>, <span class="token-number">5</span>, <span class="token-number">4</span>, <span class="token-number">3</span>, <span class="token-number">2</span>];
+
+  <span class="token-keyword">const</span> d1 = <span class="token-function">calcDigito</span>(numeros.<span class="token-function">slice</span>(<span class="token-number">0</span>, <span class="token-number">12</span>), pesos1);
+  <span class="token-keyword">const</span> d2 = <span class="token-function">calcDigito</span>(numeros.<span class="token-function">slice</span>(<span class="token-number">0</span>, <span class="token-number">13</span>), pesos2);
+
+  <span class="token-keyword">return</span> d1 <span class="token-operator">===</span> <span class="token-function">parseInt</span>(numeros[<span class="token-number">12</span>]) 
+    <span class="token-operator">&amp;&amp;</span> d2 <span class="token-operator">===</span> <span class="token-function">parseInt</span>(numeros[<span class="token-number">13</span>]);
+}</code></pre>
                 </div>
             </section>
 
             <section class="slide theme-teal" data-title="Fluxo Manifesto">
                 <div class="slide-stack">
                     <div class="slide-heading">
-                        <span class="section-label">CRUD principal</span>
-                        <h2>Cadastro de MTR em três etapas</h2>
-                        <p>O `mat-stepper` transforma um formulário longo em um fluxo guiado: gerador, resíduo e transportadora.</p>
+                        <span class="section-label">Processo: MTR</span>
+                        <h2>Fluxo guiado de cadastro</h2>
+                        <p>O <code>mat-stepper</code> divide o formulário em três contextos claros para evitar erro humano.</p>
                     </div>
 
                     <div class="stepper-visual">
@@ -241,30 +257,257 @@ return d1 === parseInt(numeros[12])
                             <span>1</span>
                             <i class="fa-solid fa-industry"></i>
                             <strong>Gerador</strong>
-                            <small>empresa que produziu o resíduo</small>
+                            <small>origem do resíduo</small>
                         </div>
                         <div class="step-block">
                             <span>2</span>
                             <i class="fa-solid fa-biohazard"></i>
                             <strong>Resíduo</strong>
-                            <small>tipo, classe, quantidade e data</small>
+                            <small>classificação e quantidade</small>
                         </div>
                         <div class="step-block">
                             <span>3</span>
                             <i class="fa-solid fa-truck-fast"></i>
                             <strong>Transportadora</strong>
-                            <small>responsável pela movimentação</small>
+                            <small>logística de saída</small>
                         </div>
                     </div>
+                    <div class="code-note">
+                        <strong>Interação do Usuário</strong>
+                        O uso do Stepper reduz a carga cognitiva, apresentando apenas os campos necessários para cada etapa da jornada, garantindo dados completos e processos guiados.
+                    </div>
+                </div>
+            </section>
 
-                    <pre class="code-window compact"><code>this.manifestoService.criarNovo({
-  geradorId: this.stepGerador.value.geradorId,
-  transportadoraId: this.stepTransportadora.value.transportadoraId,
-  residuoId,
-  classeResiduo: residuo.classe,
-  quantidade,
-  dataGeracao
+            <section class="slide theme-teal" data-title="Lógica de Cadastro">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Service: Manifesto</span>
+                        <h2>Criação do Manifesto (MTR)</h2>
+                        <p>Uso de <code>switchMap</code> para garantir a geração do número sequencial antes da persistência.</p>
+                    </div>
+
+                    <div class="code-grid">
+                        <pre class="code-window"><code><span class="token-comment">// Contrato do Formulário</span>
+<span class="token-keyword">interface</span> <span class="token-type">DadosMTR</span> {
+  geradorId: <span class="token-type">string</span>;
+  transportadoraId: <span class="token-type">string</span>;
+  residuoId: <span class="token-type">string</span>;
+  classeResiduo: <span class="token-type">ClasseResiduo</span>;
+  quantidade: <span class="token-type">number</span>;
+  dataGeracao: <span class="token-type">string</span>;
+  observacoes?: <span class="token-type">string</span>;
+}</code></pre>
+
+                        <pre class="code-window"><code><span class="token-function">criarNovo</span>(dados: <span class="token-type">DadosMTR</span>): <span class="token-type">Observable</span>&lt;<span class="token-type">Manifesto</span>&gt; {
+  <span class="token-keyword">return this</span>.<span class="token-function">listar</span>().<span class="token-function">pipe</span>(
+    <span class="token-function">switchMap</span>((ms) <span class="token-operator">=></span> {
+      <span class="token-keyword">const</span> m: <span class="token-type">Manifesto</span> = {
+        numero: <span class="token-keyword">this</span>.<span class="token-function">gerarNumeroMTR</span>(ms),
+        ...dados,
+        status: <span class="token-string">'pendente'</span>,
+        prazoDescarte: <span class="token-keyword">this</span>.<span class="token-function">calcularPrazo</span>(
+          dados.dataGeracao, dados.classeResiduo
+        )
+      };
+      <span class="token-keyword">return this</span>.<span class="token-function">criar</span>(m);
+    })
+  );
+}</code></pre>
+                    </div>
+                    <div class="code-note">
+                        <strong>Reactive Flow</strong>
+                        O fluxo de criação utiliza operadores do RxJS para garantir que a ordem das requisições seja respeitada (Número MTR -> Persistência) sem callbacks.
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-red" data-title="Autenticação">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Segurança</span>
+                        <h2>Login e Gestão de Sessão</h2>
+                        <p>Integração com API REST e uso de <code>Signals</code> para propagar o estado do usuário na aplicação.</p>
+                    </div>
+
+                    <pre class="code-window"><code><span class="token-keyword">export class</span> <span class="token-class">AuthService</span> {
+  usuarioLogado = <span class="token-function">signal</span>&lt;<span class="token-type">Usuario</span> | <span class="token-keyword">null</span>&gt;(<span class="token-keyword">null</span>);
+
+  <span class="token-function">login</span>(email: <span class="token-type">string</span>, senha: <span class="token-type">string</span>): <span class="token-type">Observable</span>&lt;<span class="token-type">boolean</span>&gt; {
+    <span class="token-keyword">return this</span>.http.<span class="token-function">get</span>&lt;<span class="token-type">Usuario</span>[]&gt;(<span class="token-string">`</span><span class="token-operator">${</span><span class="token-keyword">this</span>.api<span class="token-operator">}</span><span class="token-string">/usuarios?email=</span><span class="token-operator">${</span>email<span class="token-operator">}</span><span class="token-string">&amp;senha=</span><span class="token-operator">${</span>senha<span class="token-operator">}</span><span class="token-string">`</span>).<span class="token-function">pipe</span>(
+      <span class="token-function">retry</span>({ count: <span class="token-number">3</span>, delay: <span class="token-number">700</span> }),
+      <span class="token-function">map</span>((usuarios) <span class="token-operator">=></span> usuarios[<span class="token-number">0</span>] <span class="token-operator">??</span> <span class="token-keyword">null</span>),
+      <span class="token-function">tap</span>((usuario) <span class="token-operator">=></span> {
+        <span class="token-keyword">if</span> (usuario) {
+          <span class="token-function">sessionStorage</span>.<span class="token-function">setItem</span>(<span class="token-string">'usuario'</span>, <span class="token-type">JSON</span>.<span class="token-function">stringify</span>(usuario));
+          <span class="token-keyword">this</span>.usuarioLogado.<span class="token-function">set</span>(usuario);
+        }
+      }),
+      <span class="token-function">map</span>((usuario) <span class="token-operator">=></span> <span class="token-operator">!!</span>usuario)
+    );
+  }
+}</code></pre>
+                    <div class="code-note">
+                        <strong>Segurança Proativa</strong>
+                        O uso de Signals para o estado global permite que a interface reaja instantaneamente a mudanças de privilégios ou expiração de sessão.
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-purple" data-title="Arquitetura Reativa">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Performance</span>
+                        <h2>Dashboard com Computed Signals</h2>
+                        <p>O estado reativo garante que os contadores e alertas sejam recalculados automaticamente apenas quando os dados mudam.</p>
+                    </div>
+
+                    <pre class="code-window"><code>contadores = <span class="token-function">computed</span>(() <span class="token-operator">=></span> {
+  <span class="token-keyword">const</span> lista = <span class="token-keyword">this</span>.<span class="token-function">manifestos</span>();
+  <span class="token-keyword">return</span> {
+    pendentes: lista.<span class="token-function">filter</span>(m <span class="token-operator">=></span> m.status <span class="token-operator">===</span> <span class="token-string">'pendente'</span>).length,
+    vencendo: lista.<span class="token-function">filter</span>(m <span class="token-operator">=></span> {
+      <span class="token-keyword">const</span> dias = <span class="token-keyword">this</span>.service.<span class="token-function">diasParaVencer</span>(m.prazoDescarte);
+      <span class="token-keyword">return</span> m.status <span class="token-operator">===</span> <span class="token-string">'pendente'</span> <span class="token-operator">&amp;&amp;</span> dias <span class="token-operator">&lt;=</span> <span class="token-number">30</span> <span class="token-operator">&amp;&amp;</span> dias <span class="token-operator">>=</span> <span class="token-number">0</span>;
+    }).length,
+    finalizados: lista.<span class="token-function">filter</span>(m <span class="token-operator">=></span> m.status <span class="token-operator">===</span> <span class="token-string">'finalizado'</span>).length
+  };
 });</code></pre>
+                    <div class="code-note">
+                        <strong>Performance</strong>
+                        Computed Signals são otimizados: o cálculo de alertas e contadores só é disparado se a lista base de manifestos sofrer alguma alteração.
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-amber" data-title="Roteamento">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Configuração</span>
+                        <h2>Lazy Loading e Proteção</h2>
+                        <p>A aplicação carrega apenas o necessário para cada rota, utilizando <code>CanActivate</code> para segurança.</p>
+                    </div>
+
+                    <pre class="code-window"><code><span class="token-keyword">export const</span> <span class="token-function">routes</span>: <span class="token-type">Routes</span> = [
+  { path: <span class="token-string">''</span>, <span class="token-function">redirectTo</span>: <span class="token-string">'login'</span>, <span class="token-function">pathMatch</span>: <span class="token-string">'full'</span> },
+  {
+    path: <span class="token-string">''</span>,
+    <span class="token-function">loadComponent</span>: () <span class="token-operator">=></span> <span class="token-keyword">import</span>(<span class="token-string">'./layout/shell'</span>).<span class="token-function">then</span>(m <span class="token-operator">=></span> m.<span class="token-class">ShellComponent</span>),
+    <span class="token-function">canActivate</span>: [<span class="token-function">authGuard</span>],
+    children: [
+      {
+        path: <span class="token-string">'usuarios'</span>,
+        <span class="token-function">loadComponent</span>: () <span class="token-operator">=></span> <span class="token-keyword">import</span>(<span class="token-string">'./pages/usuarios'</span>).<span class="token-function">then</span>(m <span class="token-operator">=></span> m.<span class="token-class">UsuariosComponent</span>),
+        <span class="token-function">canActivate</span>: [<span class="token-function">adminGuard</span>]
+      }
+    ]
+  }
+];</code></pre>
+                    <div class="code-note">
+                        <strong>Escalabilidade</strong>
+                        O Lazy Loading garante que o bundle inicial permaneça leve, carregando módulos administrativos apenas quando o acesso é autorizado.
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-teal" data-title="UX e Máscaras">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Interatividade</span>
+                        <h2>Máscaras de Input no DOM</h2>
+                        <p>Garantindo a entrada de dados formatada para o usuário enquanto mantém o valor limpo para o backend.</p>
+                    </div>
+
+                    <pre class="code-window"><code><span class="token-function">aplicarMascaraCNPJ</span>(event: <span class="token-type">Event</span>): <span class="token-type">void</span> {
+  <span class="token-keyword">const</span> input = event.target <span class="token-keyword">as</span> <span class="token-type">HTMLInputElement</span>;
+  <span class="token-keyword">let</span> valor = input.value.<span class="token-function">replace</span>(<span class="token-operator">/\D/g</span>, <span class="token-string">''</span>).<span class="token-function">slice</span>(<span class="token-number">0</span>, <span class="token-number">14</span>);
+  
+  valor = valor
+    .<span class="token-function">replace</span>(<span class="token-operator">/(\d{2})(\d)/</span>, <span class="token-string">'$1.$2'</span>)
+    .<span class="token-function">replace</span>(<span class="token-operator">/(\d{2}\.\d{3})(\d)/</span>, <span class="token-string">'$1.$2'</span>)
+    .<span class="token-function">replace</span>(<span class="token-operator">/(\d{2}\.\d{3}\.\d{3})(\d)/</span>, <span class="token-string">'$1/$2'</span>)
+    .<span class="token-function">replace</span>(<span class="token-operator">/(\d{2}\.\d{3}\.\d{3}\/\d{4})(\d)/</span>, <span class="token-string">'$1-$2'</span>);
+    
+  <span class="token-keyword">this</span>.form.<span class="token-function">get</span>(<span class="token-string">'cnpj'</span>)<span class="token-operator">?</span>.<span class="token-function">setValue</span>(valor, { emitEvent: <span class="token-keyword">false</span> });
+  input.value = valor;
+}</code></pre>
+                </div>
+            </section>
+
+            <section class="slide theme-purple" data-title="Filtros Complexos">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Material Table</span>
+                        <h2>Filtro Predicado Customizado</h2>
+                        <p>Otimização da busca para considerar campos aninhados (Gerador, Resíduo) sem processamento pesado.</p>
+                    </div>
+
+                    <pre class="code-window"><code><span class="token-function">configurarFiltro</span>(): <span class="token-type">void</span> {
+  <span class="token-keyword">this</span>.dataSource.filterPredicate = (m: <span class="token-type">ManifestoView</span>, filtro: <span class="token-type">string</span>) <span class="token-operator">=></span> {
+    <span class="token-keyword">const</span> campos = [
+      m.numero, 
+      m.gerador<span class="token-operator">?</span>.razaoSocial, 
+      m.residuo<span class="token-operator">?</span>.nome
+    ].<span class="token-function">join</span>(<span class="token-string">' '</span>).<span class="token-function">toLowerCase</span>();
+    
+    <span class="token-keyword">return</span> campos.<span class="token-function">includes</span>(filtro);
+  };
+}</code></pre>
+                    <div class="code-note">
+                        <strong>Filtro Dinâmico</strong>
+                        O predicado é configurado para ser case-insensitive e buscar em múltiplos campos simultaneamente, melhorando drasticamente a usabilidade da tabela.
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-green" data-title="Tipagem Estrita">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Modelagem</span>
+                        <h2>Contratos e Union Types</h2>
+                        <p>Uso rigoroso de interfaces e tipos literais para evitar estados inválidos e facilitar o autocomplete.</p>
+                    </div>
+
+                    <pre class="code-window"><code><span class="token-keyword">export type</span> <span class="token-type">StatusManifesto</span> = <span class="token-string">'pendente'</span> | <span class="token-string">'transportado'</span> | <span class="token-string">'finalizado'</span>;
+<span class="token-keyword">export type</span> <span class="token-type">ClasseResiduo</span> = <span class="token-string">'I'</span> | <span class="token-string">'II-A'</span> | <span class="token-string">'II-B'</span>;
+
+<span class="token-keyword">export interface</span> <span class="token-type">ManifestoView</span> <span class="token-keyword">extends</span> <span class="token-type">Manifesto</span> {
+  gerador<span class="token-operator">?</span>: <span class="token-type">Gerador</span>;
+  transportadora<span class="token-operator">?</span>: <span class="token-type">Transportadora</span>;
+  residuo<span class="token-operator">?</span>: <span class="token-type">Residuo</span>;
+}</code></pre>
+                    <div class="code-note">
+                        <strong>Qualidade de Código</strong>
+                        Interfaces estendidas (ViewModels) garantem que o TypeScript aponte erros de acesso a dados nulos antes mesmo do código ser executado.
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide theme-red" data-title="UI Condicional">
+                <div class="slide-stack">
+                    <div class="slide-heading">
+                        <span class="section-label">Angular Template</span>
+                        <h2>Status Visuais Dinâmicos</h2>
+                        <p>Aplicação de classes CSS e labels baseadas nos metadados das entidades, garantindo consistência visual.</p>
+                    </div>
+
+                    <pre class="code-window"><code><span class="token-function">getStatusLabel</span>(status<span class="token-operator">?</span>: <span class="token-type">string</span>): <span class="token-type">string</span> {
+  <span class="token-keyword">const</span> map: <span class="token-class">Record</span>&lt;<span class="token-type">string</span>, <span class="token-type">string</span>&gt; = {
+    pendente: <span class="token-string">'Pendente'</span>,
+    transportado: <span class="token-string">'Transportado'</span>,
+    finalizado: <span class="token-string">'Finalizado'</span>,
+  };
+  <span class="token-keyword">return</span> map[status <span class="token-operator">??</span> <span class="token-string">''</span>] <span class="token-operator">??</span> status <span class="token-operator">??</span> <span class="token-string">''</span>;
+}
+
+<span class="token-comment">// No Template HTML:</span>
+<span class="token-operator">&lt;</span>mat-chip [class]=<span class="token-string">"'chip-status chip-' + m.status"</span><span class="token-operator">&gt;</span>
+  <span class="token-operator">{{</span> <span class="token-function">getStatusLabel</span>(m.status) <span class="token-operator">}}</span>
+<span class="token-operator">&lt;</span>/mat-chip<span class="token-operator">&gt;</span></code></pre>
+                    <div class="code-note">
+                        <strong>Consistência Visual</strong>
+                        Centralizar a lógica de labels e cores em métodos puros no componente facilita a manutenção e garante uma identidade visual única no sistema.
+                    </div>
                 </div>
             </section>
 
@@ -282,13 +525,16 @@ return d1 === parseInt(numeros[12])
                     </div>
 
                     <div class="rule-layout">
-                        <pre class="code-window small-code"><code>const PRAZO_POR_CLASSE = {
-  I: 90,
-  'II-A': 180,
-  'II-B': 365,
+                        <pre class="code-window small-code"><code><span class="token-keyword">const</span> <span class="token-type">PRAZO_POR_CLASSE</span>: <span class="token-class">Record</span>&lt;<span class="token-type">ClasseResiduo</span>, <span class="token-type">number</span>&gt; = { 
+  I: <span class="token-number">90</span>, <span class="token-string">'II-A'</span>: <span class="token-number">180</span>, <span class="token-string">'II-B'</span>: <span class="token-number">365</span> 
 };
 
-data.setDate(data.getDate() + dias);</code></pre>
+<span class="token-function">calcularPrazoDescarte</span>(dataGeracao: <span class="token-type">string</span>, classe: <span class="token-type">ClasseResiduo</span>): <span class="token-type">string</span> {
+  <span class="token-keyword">const</span> dias = <span class="token-type">PRAZO_POR_CLASSE</span>[classe];
+  <span class="token-keyword">const</span> data = <span class="token-keyword">new</span> <span class="token-class">Date</span>(dataGeracao);
+  data.<span class="token-function">setDate</span>(data.<span class="token-function">getDate</span>() <span class="token-operator">+</span> dias);
+  <span class="token-keyword">return</span> data.<span class="token-function">toISOString</span>().<span class="token-function">split</span>(<span class="token-string">'T'</span>)[<span class="token-number">0</span>];
+}</code></pre>
                         <div class="timeline">
                             <span>Data de geração</span>
                             <strong>+ dias por classe</strong>
@@ -310,21 +556,30 @@ data.setDate(data.getDate() + dias);</code></pre>
                         </ul>
                     </div>
 
-                    <pre class="code-window"><code>return forkJoin({
-  manifestos: this.http.get&lt;Manifesto[]&gt;(...),
-  geradores: this.geradorService.listar(),
-  transportadoras: this.transportadoraService.listar(),
-  residuos: this.residuoService.listar(),
-}).pipe(
-  map(({ manifestos, geradores, transportadoras, residuos }) =&gt;
-    manifestos.map((m) =&gt; ({
-      ...m,
-      gerador: geradores.find((g) =&gt; g.id === m.geradorId),
-      transportadora: transportadoras.find((t) =&gt; t.id === m.transportadoraId),
-      residuo: residuos.find((r) =&gt; r.id === m.residuoId),
-    }))
-  )
-);</code></pre>
+                    <div class="code-grid">
+                        <pre class="code-window"><code><span class="token-function">listarComDetalhes</span>(): <span class="token-type">Observable</span>&lt;<span class="token-type">ManifestoView</span>[]&gt; {
+  <span class="token-keyword">return</span> <span class="token-function">forkJoin</span>({
+    manifestos: <span class="token-keyword">this</span>.http.<span class="token-function">get</span>&lt;<span class="token-type">Manifesto</span>[]&gt;(<span class="token-operator">...</span>),
+    geradores: <span class="token-keyword">this</span>.geradorService.<span class="token-function">listar</span>(),
+    transportadoras: <span class="token-keyword">this</span>.transportadoraService.<span class="token-function">listar</span>(),
+    residuos: <span class="token-keyword">this</span>.residuoService.<span class="token-function">listar</span>(),
+  }).<span class="token-function">pipe</span>(
+    <span class="token-function">map</span>(<span class="token-keyword">this</span>.montarView)
+  );
+}</code></pre>
+
+                        <pre class="code-window"><code><span class="token-keyword">private</span> <span class="token-function">montarView</span>({ m, g, t, r }) {
+  <span class="token-keyword">return</span> m.<span class="token-function">map</span>((item) <span class="token-operator">=></span> ({
+    ...item,
+    gerador: g.<span class="token-function">find</span>((x) <span class="token-operator">=></span> 
+      <span class="token-type">String</span>(x.id) <span class="token-operator">===</span> <span class="token-type">String</span>(item.geradorId)),
+    transportadora: t.<span class="token-function">find</span>((x) <span class="token-operator">=></span> 
+      <span class="token-type">String</span>(x.id) <span class="token-operator">===</span> <span class="token-type">String</span>(item.transportadoraId)),
+    residuo: r.<span class="token-function">find</span>((x) <span class="token-operator">=></span> 
+      <span class="token-type">String</span>(x.id) <span class="token-operator">===</span> <span class="token-type">String</span>(item.residuoId)),
+  }));
+}</code></pre>
+                    </div>
                 </div>
             </section>
 
@@ -356,13 +611,16 @@ data.setDate(data.getDate() + dias);</code></pre>
                             <strong>Vencendo</strong>
                             <span>prioridade da operação</span>
                         </div>
-                        <pre class="code-window mini-code"><code>vencendo: lista.filter((m) =&gt; {
-  const dias = this.manifestoService
-    .diasParaVencer(m.prazoDescarte);
-  return m.status === 'pendente'
-    &amp;&amp; dias &lt;= 30
-    &amp;&amp; dias &gt;= 0;
-}).length</code></pre>
+                        <pre class="code-window mini-code"><code>contadores = <span class="token-function">computed</span>(() <span class="token-operator">=></span> {
+  <span class="token-keyword">const</span> lista = <span class="token-keyword">this</span>.<span class="token-function">manifestos</span>();
+  <span class="token-keyword">return</span> {
+    pendentes: lista.<span class="token-function">filter</span>((m) <span class="token-operator">=></span> m.status <span class="token-operator">===</span> <span class="token-string">'pendente'</span>).<span class="token-function">length</span>,
+    vencendo: lista.<span class="token-function">filter</span>((m) <span class="token-operator">=></span> {
+      <span class="token-keyword">const</span> dias = <span class="token-keyword">this</span>.service.<span class="token-function">diasParaVencer</span>(m.prazoDescarte);
+      <span class="token-keyword">return</span> m.status <span class="token-operator">===</span> <span class="token-string">'pendente'</span> <span class="token-operator">&amp;&amp;</span> dias <span class="token-operator">&lt;=</span> <span class="token-number">30</span> <span class="token-operator">&amp;&amp;</span> dias <span class="token-operator">>=</span> <span class="token-number">0</span>;
+    }).<span class="token-function">length</span>
+  };
+});</code></pre>
                     </div>
                 </div>
             </section>
@@ -375,16 +633,16 @@ data.setDate(data.getDate() + dias);</code></pre>
                     </div>
 
                     <ol class="demo-list">
-                        <li><strong>Login:</strong> entrar como administrador e mostrar o menu de usuários.</li>
-                        <li><strong>CNPJ:</strong> tentar cadastrar gerador com CNPJ inválido e mostrar o bloqueio.</li>
-                        <li><strong>MTR:</strong> criar manifesto pelo stepper e destacar o prazo calculado.</li>
-                        <li><strong>Tabela:</strong> filtrar por status e alterar para transportado/finalizado.</li>
-                        <li><strong>Dashboard:</strong> fechar mostrando contadores e alertas de prazo.</li>
+                        <li><strong>Login:</strong> mostrar a autenticação via Service e o estado reativo do usuário.</li>
+                        <li><strong>Formulários:</strong> validar CNPJ em tempo real e mostrar o bloqueio de submissão.</li>
+                        <li><strong>MTR:</strong> criar manifesto pelo fluxo guiado e explicar a lógica de ID sequencial.</li>
+                        <li><strong>Regras:</strong> destacar o cálculo automático de prazo baseado na classe do resíduo.</li>
+                        <li><strong>Dashboard:</strong> exibir a reatividade total dos contadores e alertas de vencimento.</li>
                     </ol>
 
                     <div class="final-message">
-                        <strong>Mensagem final</strong>
-                        <p>O projeto demonstra CRUD completo, separação em camadas, validação de dados, proteção de rotas e uma regra de negócio ligada diretamente ao contexto de logística ambiental.</p>
+                        <strong>Direcionamento Estratégico</strong>
+                        <p>A apresentação deve focar na robustez: mostre como o TypeScript e os Signals protegem a aplicação de erros de estado, como o Angular Material entrega uma UX premium e como o backend simulado permite testar fluxos de negócio reais (como o cálculo de prazos ambientais) de forma ágil e segura.</p>
                     </div>
                 </div>
             </section>

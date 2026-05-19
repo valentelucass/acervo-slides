@@ -12,6 +12,24 @@
     justify-content: center;
     z-index: 1;
     padding: 2rem;
+    overflow: hidden;
+}
+
+/* Fullscreen Imersivo */
+:fullscreen .container-slides {
+    padding: 0 !important;
+    background: #000 !important;
+}
+
+:fullscreen .orb,
+:fullscreen .prev,
+:fullscreen .next,
+:fullscreen .barra-progresso {
+    display: none !important;
+}
+
+:fullscreen .slide {
+    padding: 2rem !important;
 }
 
 .trilha-slides {

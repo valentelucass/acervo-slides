@@ -38,26 +38,34 @@ document.addEventListener("DOMContentLoaded", () => {
     prevButton.addEventListener("click", () => goTo(currentIndex - 1));
     nextButton.addEventListener("click", () => goTo(currentIndex + 1));
 
-    document.addEventListener("keydown", (event) => {
-        const forwardKeys = ["ArrowRight", "PageDown", " "];
-        const backwardKeys = ["ArrowLeft", "PageUp"];
+    window.toggleFullscreen = function() {
+        const shell = document.querySelector('.presentation-shell');
+        if (!document.fullscreenElement) {
+            shell.requestFullscreen().catch(err => {
+                console.error(`Erro: ${err.message}`);
+            });
+        } else {
+            if (document.exitFullscreen) document.exitFullscreen();
+        }
+    };
 
-        if (forwardKeys.includes(event.key)) {
+    document.addEventListener("keydown", (event) => {
+        const forward = ["ArrowRight", "PageDown", " ", "Enter"];
+        const backward = ["ArrowLeft", "PageUp", "Backspace"];
+
+        if (forward.includes(event.key)) {
             event.preventDefault();
             goTo(currentIndex + 1);
-        }
-
-        if (backwardKeys.includes(event.key)) {
+        } else if (backward.includes(event.key)) {
             event.preventDefault();
             goTo(currentIndex - 1);
-        }
-
-        if (event.key === "Home") {
+        } else if (event.key.toLowerCase() === "f") {
+            event.preventDefault();
+            toggleFullscreen();
+        } else if (event.key === "Home") {
             event.preventDefault();
             goTo(0);
-        }
-
-        if (event.key === "End") {
+        } else if (event.key === "End") {
             event.preventDefault();
             goTo(slides.length - 1);
         }

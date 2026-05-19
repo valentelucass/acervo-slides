@@ -1111,3 +1111,27 @@ h2 {
         page-break-after: always;
     }
 }
+
+/* Fullscreen Imersivo */
+:fullscreen .presentation-shell {
+    padding: 0 !important;
+    gap: 0 !important;
+    background: #000 !important;
+}
+
+:fullscreen .deck {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+:fullscreen .deck-topbar,
+:fullscreen .deck-footer {
+    display: none !important;
+}
+
+:fullscreen .slide {
+    padding: 40px 80px !important;
+}
